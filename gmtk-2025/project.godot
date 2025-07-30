@@ -11,12 +11,17 @@ config_version=5
 [application]
 
 config/name="GMTK 2025"
+run/main_scene="res://Game/game.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [display]
 
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/wakatime/plugin.cfg")
 
 [rendering]
 

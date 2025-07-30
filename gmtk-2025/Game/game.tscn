@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmuytj83v71ok"]
+
+[ext_resource type="Script" uid="uid://rarfh871whjk" path="res://Game/game.gd" id="1_7raqb"]
+[ext_resource type="AudioStream" uid="uid://1r5cu6jwaejv" path="res://assets/music/1/Bass.wav" id="1_bk3v5"]
+[ext_resource type="Script" uid="uid://n2up8pxmptqx" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="3_jcm6v"]
+[ext_resource type="AudioStream" uid="uid://dl1da220uiuxx" path="res://assets/music/1/Melody.wav" id="3_qmv3x"]
+[ext_resource type="AudioStream" uid="uid://cw1hh66wg27dv" path="res://assets/music/1/Drum_Machine.wav" id="4_oomkl"]
+[ext_resource type="AudioStream" uid="uid://c1jnqravtvx6s" path="res://assets/music/1/Chords.wav" id="5_buohc"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_7raqb")
+beat_count = 16
+
+[node name="Bass" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_bk3v5")
+autoplay = true
+bus = &"Bass"
+
+[node name="Melody" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qmv3x")
+bus = &"Melody"
+
+[node name="Drum" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_oomkl")
+bus = &"Drum_Maschine"
+
+[node name="Chords" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_buohc")
+bus = &"Chords"
+
+[node name="RhythmNotifier" type="Node" parent="." node_paths=PackedStringArray("audio_stream_player")]
+script = ExtResource("3_jcm6v")
+bpm = 120.0
+beat_length = 0.5
+audio_stream_player = NodePath("../Bass")
+metadata/_custom_type_script = "uid://n2up8pxmptqx"
