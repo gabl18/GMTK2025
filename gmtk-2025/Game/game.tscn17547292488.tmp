@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmuytj83v71ok"]
+[gd_scene load_steps=13 format=3 uid="uid://cmuytj83v71ok"]
 
 [ext_resource type="Script" uid="uid://curnggefttx6x" path="res://Game/_game.gd" id="1_7gi1t"]
 [ext_resource type="Script" uid="uid://rarfh871whjk" path="res://Game/game.gd" id="1_7raqb"]
@@ -7,7 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://dargbiosdvw7j" path="res://assets/music/1/Base.wav" id="3_buohc"]
 [ext_resource type="Script" uid="uid://n2up8pxmptqx" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="3_jcm6v"]
 [ext_resource type="AudioStream" uid="uid://dl1da220uiuxx" path="res://assets/music/1/Melody.wav" id="3_qmv3x"]
-[ext_resource type="PackedScene" uid="uid://bg4shy3d8638j" path="res://Game/audio_visualizer.tscn" id="4_7gi1t"]
 [ext_resource type="AudioStream" uid="uid://cw1hh66wg27dv" path="res://assets/music/1/Drum_Machine.wav" id="4_oomkl"]
 [ext_resource type="AudioStream" uid="uid://c1jnqravtvx6s" path="res://assets/music/1/Chords.wav" id="5_buohc"]
 
@@ -71,17 +70,6 @@ texture = ExtResource("1_kul4i")
 region_enabled = true
 region_rect = Rect2(0, 0, 960, 616)
 script = ExtResource("2_kul4i")
-
-[node name="AudioVisualizer" parent="VinylPlayer" instance=ExtResource("4_7gi1t")]
-offset_left = 356.0
-offset_top = 183.0
-offset_right = -596.0
-offset_bottom = -385.0
-
-[node name="Display" type="Sprite2D" parent="VinylPlayer"]
-texture = ExtResource("1_kul4i")
-region_enabled = true
-region_rect = Rect2(7680, 0, 960, 616)
 
 [node name="Disc" type="Sprite2D" parent="VinylPlayer"]
 unique_name_in_owner = true
@@ -150,7 +138,6 @@ miss_time = 0.1
 
 [node name="Base" type="AudioStreamPlayer" parent="GameControler"]
 stream = ExtResource("3_buohc")
-bus = &"Music"
 
 [node name="1" type="AudioStreamPlayer" parent="GameControler"]
 stream = ExtResource("3_buohc")

@@ -1,3 +1,18 @@
-[gd_scene format=3 uid="uid://hcw7nfruroab"]
+[gd_scene load_steps=3 format=3 uid="uid://hcw7nfruroab"]
+
+[ext_resource type="Texture2D" uid="uid://ihc5vq0gx7jh" path="res://assets/art/Background.png" id="1_2w1kt"]
+[ext_resource type="PackedScene" uid="uid://cmuytj83v71ok" path="res://Game/game.tscn" id="2_qvhan"]
 
 [node name="Main" type="Node"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2w1kt")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Game" parent="." instance=ExtResource("2_qvhan")]
