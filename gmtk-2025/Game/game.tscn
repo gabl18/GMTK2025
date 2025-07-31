@@ -58,6 +58,7 @@ _data = {
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7raqb")
 beat_count = 16
+miss_time = 0.1
 
 [node name="Base" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_bk3v5")

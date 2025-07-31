@@ -21,6 +21,8 @@ const NOTE = preload("res://Game/note.tscn")
 
 @export var beat_count: int
 
+@export var miss_time: float
+
 var presses :=[
 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0],
@@ -28,8 +30,13 @@ var presses :=[
 	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ]
 
-var active_presses =[]
+var active_presses = []
+var next_presses = []
 var empty_press_list = []
+var active_beat = 0
+var time_since_last_beat = 0
+var time_till_next_beat = 0
+
 
 signal _next_loop
 
@@ -42,6 +49,7 @@ func _ready() -> void:
 	
 	rhythm_notifier.beat.connect(_try_next_loop)
 	rhythm_notifier.beat.connect(_spawn_next_nodes)
+	rhythm_notifier.beat.connect(_update_beat_timer)
 	%Spinner.speed_scale = 1/(rhythm_notifier.beat_length * beat_count)
 	randomize()
 	
@@ -54,20 +62,55 @@ func _ready() -> void:
 		_generate_random_loop()
 		print(tracks.filter(func (x): return x.playing))
 		await _next_loop
+	
 
+func _process(delta: float) -> void:
+	time_since_last_beat += delta
+	time_till_next_beat += delta
+
+
+func _input(event: InputEvent) -> void:
+	if not event.is_echo():
+		
+		if event.is_action_pressed("1"):
+			_check_press(0)
+		if event.is_action_pressed("2"):
+			_check_press(1)
+		if event.is_action_pressed("3"):
+			_check_press(2)
+		if event.is_action_pressed("4"):
+			_check_press(3)
+
+
+func _check_press(track:int):
+	if time_since_last_beat > miss_time:
+		time_till_next_beat = 0
+		await rhythm_notifier.beat
+		if time_till_next_beat > miss_time:
+			print('missed!!!')
+		else:
+			if active_presses[track][active_beat % beat_count]:
+				print("hit(early)",str(time_till_next_beat))
+			else:
+				print("missed!!")
+	else:
+		if active_presses[track][active_beat % beat_count]:
+			print("hit(late)",str(time_since_last_beat))
+		else:
+			print("missed!")
 
 func _generate_random_loop():
-
 	playing_tracks = []
 	while playing_tracks.is_empty():
-		active_presses = Array()
+		active_presses = next_presses
+		next_presses = Array()
 		playing_tracks = []
 		for i in range(len(tracks)):
 			if randi() % 2:
-				active_presses.append(presses[i])
+				next_presses.append(presses[i])
 				playing_tracks.append(tracks[i])
 			else:
-				active_presses.append(empty_press_list)
+				next_presses.append(empty_press_list)
 
 
 func _play_first_loop():
@@ -80,9 +123,14 @@ func _play_loop(active_tracks):
 		track.play()
 
 
+func _update_beat_timer(beat:int):
+	active_beat = beat
+	time_since_last_beat = 0
+
+
 func _spawn_next_nodes(beat:int):
-	for i in range(len(active_presses)):
-		if active_presses[i][beat % beat_count] == 1:
+	for i in range(len(next_presses)):
+		if next_presses[i][beat % beat_count] == 1:
 			var new_tween = get_tree().create_tween()
 			var new_note = NOTE.instantiate()
 			new_note.modulate.a = 0
