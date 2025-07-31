@@ -1,20 +1,72 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmuytj83v71ok"]
+[gd_scene load_steps=14 format=3 uid="uid://cmuytj83v71ok"]
 
 [ext_resource type="Script" uid="uid://rarfh871whjk" path="res://Game/game.gd" id="1_7raqb"]
 [ext_resource type="AudioStream" uid="uid://1r5cu6jwaejv" path="res://assets/music/1/Bass.wav" id="1_bk3v5"]
+[ext_resource type="AudioStream" uid="uid://dargbiosdvw7j" path="res://assets/music/1/Base.wav" id="3_buohc"]
 [ext_resource type="Script" uid="uid://n2up8pxmptqx" path="res://addons/rhythm_notifier/rhythm_notifier.gd" id="3_jcm6v"]
 [ext_resource type="AudioStream" uid="uid://dl1da220uiuxx" path="res://assets/music/1/Melody.wav" id="3_qmv3x"]
 [ext_resource type="AudioStream" uid="uid://cw1hh66wg27dv" path="res://assets/music/1/Drum_Machine.wav" id="4_oomkl"]
 [ext_resource type="AudioStream" uid="uid://c1jnqravtvx6s" path="res://assets/music/1/Chords.wav" id="5_buohc"]
+[ext_resource type="Texture2D" uid="uid://fg5616u2x71y" path="res://assets/art/Vinyl_Player_Spritesheet_test.png" id="7_oomkl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmv3x"]
+atlas = ExtResource("7_oomkl")
+region = Rect2(0, 0, 960, 616)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oomkl"]
+atlas = ExtResource("7_oomkl")
+region = Rect2(960, 0, 960, 616)
+
+[sub_resource type="Animation" id="Animation_kul4i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_buohc"]
+resource_name = "spin"
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7gi1t"]
+_data = {
+&"RESET": SubResource("Animation_kul4i"),
+&"spin": SubResource("Animation_buohc")
+}
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7raqb")
 beat_count = 16
 
-[node name="Bass" type="AudioStreamPlayer" parent="."]
+[node name="Base" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_bk3v5")
 autoplay = true
 bus = &"Bass"
+
+[node name="Bass" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_buohc")
+volume_db = -5.878
 
 [node name="Melody" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_qmv3x")
@@ -32,5 +84,42 @@ bus = &"Chords"
 script = ExtResource("3_jcm6v")
 bpm = 120.0
 beat_length = 0.5
-audio_stream_player = NodePath("../Bass")
+audio_stream_player = NodePath("../Base")
 metadata/_custom_type_script = "uid://n2up8pxmptqx"
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(571, 288)
+texture = SubResource("AtlasTexture_qmv3x")
+
+[node name="Note_Spawns" type="Node2D" parent="."]
+position = Vector2(580, 286)
+rotation = -1.5639
+
+[node name="Note_Spawn_location_Bass" type="Node2D" parent="Note_Spawns"]
+position = Vector2(1, 112)
+
+[node name="Note_Spawn_location_Melody" type="Node2D" parent="Note_Spawns"]
+position = Vector2(1, 140)
+rotation = -0.00464491
+
+[node name="Note_Spawn_location_Drum" type="Node2D" parent="Note_Spawns"]
+position = Vector2(1, 170)
+rotation = -0.00464491
+
+[node name="Note_Spawn_location_Chords" type="Node2D" parent="Note_Spawns"]
+position = Vector2(1, 202)
+rotation = -0.00464491
+
+[node name="Disc" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(580, 285)
+texture = SubResource("AtlasTexture_oomkl")
+centered = false
+offset = Vector2(-432, -298)
+
+[node name="Spinner" type="AnimationPlayer" parent="Disc"]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_7gi1t")
+}
+autoplay = "spin"
