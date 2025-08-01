@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cmuytj83v71ok"]
+[gd_scene load_steps=28 format=3 uid="uid://cmuytj83v71ok"]
 
 [ext_resource type="Script" uid="uid://curnggefttx6x" path="res://Game/_game.gd" id="1_7gi1t"]
 [ext_resource type="Script" uid="uid://rarfh871whjk" path="res://Game/game.gd" id="1_7raqb"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://nxgcqgtxk7kb" path="res://Game/note_paper.gd" id="5_fsxsm"]
 [ext_resource type="Texture2D" uid="uid://bi2pi5d3l6ngw" path="res://assets/art/Perfect_Nice_Good.png" id="6_4lqr4"]
 [ext_resource type="FontFile" uid="uid://bvmskx43n3rqa" path="res://assets/fonts/vinivicious.ttf" id="8_qlwvw"]
+[ext_resource type="Script" uid="uid://xjcihxdwm6ss" path="res://Game/tamagotchi.gd" id="10_rpdke"]
 [ext_resource type="Texture2D" uid="uid://bgb2d08ufjgsu" path="res://assets/art/Hypetexts.png" id="12_glinl"]
 
 [sub_resource type="Animation" id="Animation_kul4i"]
@@ -86,6 +87,11 @@ font = ExtResource("8_qlwvw")
 font_size = 40
 shadow_size = 5
 shadow_color = Color(0.152941, 0.152941, 0.152941, 0.0470588)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qlwvw"]
+line_spacing = 0.0
+font = ExtResource("8_qlwvw")
+font_size = 28
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -231,6 +237,20 @@ text = "Score:
 23245"
 label_settings = SubResource("LabelSettings_rpdke")
 script = ExtResource("5_fsxsm")
+
+[node name="Tamagotchi" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -445.0
+offset_top = -180.0
+offset_right = -351.0
+offset_bottom = -113.0
+rotation = -0.278402
+text = "Loops:
+12"
+label_settings = SubResource("LabelSettings_qlwvw")
+horizontal_alignment = 1
+script = ExtResource("10_rpdke")
 
 [node name="GameControler" type="Node2D" parent="."]
 script = ExtResource("1_7raqb")

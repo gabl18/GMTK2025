@@ -72,6 +72,7 @@ func _ready() -> void:
 	await _next_loop
 	
 	while true:
+		%Tamagotchi.loops += 1
 		vinyl_player.change_active_tracks(next_presses.map(func(x): return x is Array))
 		_play_loop(playing_tracks)
 		_generate_random_loop()
