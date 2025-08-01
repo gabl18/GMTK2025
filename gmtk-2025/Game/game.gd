@@ -4,6 +4,7 @@ const NOTE = preload("res://Game/note.tscn")
 
 @onready var rhythm_notifier: RhythmNotifier = $RhythmNotifier
 @onready var vinyl_player: Sprite2D = %VinylPlayer
+@onready var red_line: Sprite2D = %RedLine
 
 @onready var base: AudioStreamPlayer = $Base
 
@@ -22,17 +23,18 @@ const NOTE = preload("res://Game/note.tscn")
 @onready var note_spawn_locations = [note_spawn_location_1,note_spawn_location_2,note_spawn_location_3,note_spawn_location_4,note_spawn_location_5]
 
 @export var beat_count: int
+@export var song_beat_count: int
 
 @export var miss_time: float
 
 var note_colors
 
 var presses :=[
-	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-	[1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0],
-	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+	[1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0],
+	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+	[1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
+	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ]
 
 var active_presses = []
@@ -53,7 +55,7 @@ func _ready() -> void:
 	rhythm_notifier.beat.connect(_spawn_next_nodes)
 	rhythm_notifier.beat.connect(_update_beat_timer)
 	
-	vinyl_player.change_turn_speed(1/(rhythm_notifier.beat_length * beat_count))
+	vinyl_player.change_turn_speed(1/(rhythm_notifier.beat_length*2 * song_beat_count))
 	
 	randomize()
 	vinyl_player.reset_needle()
@@ -97,15 +99,17 @@ func _check_press(track:int):
 		if time_till_next_beat > miss_time:
 			print('missed!!!')
 		else:
-			if active_presses[track][active_beat % beat_count]:
-				print("hit(early)",str(time_till_next_beat))
-			else:
-				print("missed!!")
+			if active_presses[track]:
+				if active_presses[track][active_beat % beat_count]:
+					red_line.spawn_particle(track,0)
+				else:
+					print("missed!!")
 	else:
-		if active_presses[track][active_beat % beat_count]:
-			print("hit(late)",str(time_since_last_beat))
-		else:
-			print("missed!")
+		if active_presses[track]:
+			if active_presses[track][active_beat % beat_count]:
+				red_line.spawn_particle(track,0)
+			else:
+				print("missed!")
 
 func _generate_random_loop():
 	playing_tracks = []
@@ -148,7 +152,9 @@ func _spawn_next_nodes(beat:int):
 				new_note.modulate = note_colors[i]
 				new_note.modulate.a = 0
 				new_tween.tween_property(new_note,"modulate:a",1,4).set_delay(2)
-				new_note.kill_in(rhythm_notifier.beat_length*beat_count)
+				new_note.kill_in(rhythm_notifier.beat_length*2 *song_beat_count)
+				new_note.frame = i
+				new_note.global_rotation = 0
 				new_note.global_position = note_spawn_locations[i].global_position
 
 

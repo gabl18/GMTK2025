@@ -13,6 +13,7 @@ extends Control
 @onready var track_5: Sprite2D = $VinylPlayer/Disc/Track5
 
 @onready var game_controler: Node2D = $GameControler
+@onready var red_line: Sprite2D = $VinylPlayer/RedLine
 
 func _ready() -> void:
 	track_1.modulate = track_color_1
@@ -22,3 +23,4 @@ func _ready() -> void:
 	track_5.modulate = track_color_5
 	
 	game_controler.note_colors = [track_color_1,track_color_2,track_color_3,track_color_4,track_color_5]
+	red_line.note_colors = [track_color_1,track_color_2,track_color_3,track_color_4,track_color_5]

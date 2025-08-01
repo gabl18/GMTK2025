@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cmuytj83v71ok"]
+[gd_scene load_steps=14 format=3 uid="uid://cmuytj83v71ok"]
 
 [ext_resource type="Script" uid="uid://curnggefttx6x" path="res://Game/_game.gd" id="1_7gi1t"]
 [ext_resource type="Script" uid="uid://rarfh871whjk" path="res://Game/game.gd" id="1_7raqb"]
@@ -9,10 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://dl1da220uiuxx" path="res://assets/music/1/Melody.wav" id="3_qmv3x"]
 [ext_resource type="PackedScene" uid="uid://bg4shy3d8638j" path="res://Game/audio_visualizer.tscn" id="4_7gi1t"]
 [ext_resource type="AudioStream" uid="uid://cw1hh66wg27dv" path="res://assets/music/1/Drum_Machine.wav" id="4_oomkl"]
-[ext_resource type="Script" uid="uid://lw871uxyccy5" path="res://Game/red_line.gd" id="5_72g0p"]
 [ext_resource type="AudioStream" uid="uid://c1jnqravtvx6s" path="res://assets/music/1/Chords.wav" id="5_buohc"]
-[ext_resource type="Script" uid="uid://nxgcqgtxk7kb" path="res://Game/note_paper.gd" id="5_fsxsm"]
-[ext_resource type="Texture2D" uid="uid://bgb2d08ufjgsu" path="res://assets/art/Hypetexts.png" id="12_glinl"]
 
 [sub_resource type="Animation" id="Animation_kul4i"]
 length = 0.001
@@ -51,23 +48,6 @@ _data = {
 &"RESET": SubResource("Animation_kul4i"),
 &"spin": SubResource("Animation_buohc")
 }
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_72g0p"]
-atlas = ExtResource("12_glinl")
-
-[sub_resource type="Curve" id="Curve_4lqr4"]
-_limits = [-200.0, 200.0, 0.0, 1.0]
-_data = [Vector2(0, 48.4736), 0.0, 0.0, 0, 0, Vector2(0.681159, -30.8973), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Gradient" id="Gradient_qlwvw"]
-offsets = PackedFloat32Array(0, 0.889175, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.996546, 1, 1, 1, 0)
-
-[sub_resource type="Curve" id="Curve_rpdke"]
-_limits = [-1.0, 1.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.990338, 0.0619797), 0.0, 0.0, 0, 0]
-point_count = 2
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -163,47 +143,6 @@ offset = Vector2(-800, -100)
 region_enabled = true
 region_rect = Rect2(6720, 0, 960, 616)
 
-[node name="RedLine" type="Sprite2D" parent="VinylPlayer"]
-unique_name_in_owner = true
-texture = ExtResource("1_kul4i")
-region_enabled = true
-region_rect = Rect2(8640, 0, 960, 616)
-script = ExtResource("5_72g0p")
-textures = Array[Texture2D]([SubResource("AtlasTexture_72g0p")])
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="VinylPlayer/RedLine"]
-position = Vector2(-83, 47)
-emitting = false
-amount = 1
-texture = ExtResource("12_glinl")
-one_shot = true
-lifetime_randomness = 0.05
-direction = Vector2(-1, -2)
-spread = 29.31
-gravity = Vector2(0, 0)
-initial_velocity_min = 59.63
-initial_velocity_max = 123.85
-angular_velocity_min = -46.25
-angular_velocity_max = 51.79
-linear_accel_min = 2.75
-linear_accel_max = 17.43
-linear_accel_curve = SubResource("Curve_4lqr4")
-radial_accel_min = -29.36
-radial_accel_max = 10.09
-tangential_accel_min = -47.71
-tangential_accel_max = 47.71
-angle_min = 19.8
-angle_max = 66.1
-color = Color(1, 0.321569, 1, 1)
-color_ramp = SubResource("Gradient_qlwvw")
-hue_variation_min = -0.1
-hue_variation_max = 0.1
-hue_variation_curve = SubResource("Curve_rpdke")
-
-[node name="NotePaper" type="Node2D" parent="."]
-position = Vector2(-467, 70)
-script = ExtResource("5_fsxsm")
-
 [node name="GameControler" type="Node2D" parent="."]
 script = ExtResource("1_7raqb")
 beat_count = 32
@@ -243,7 +182,7 @@ audio_stream_player = NodePath("../Base")
 metadata/_custom_type_script = "uid://n2up8pxmptqx"
 
 [node name="Note_Spawns" type="Node2D" parent="."]
-rotation = 1.06047
+rotation = -0.992166
 
 [node name="Note_Spawn_location_1" type="Node2D" parent="Note_Spawns"]
 unique_name_in_owner = true

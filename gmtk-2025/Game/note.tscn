@@ -5,4 +5,5 @@
 
 [node name="Note" type="Sprite2D"]
 texture = ExtResource("1_2o5vk")
+hframes = 4
 script = ExtResource("2_a386v")
