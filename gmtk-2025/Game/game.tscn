@@ -9,9 +9,9 @@
 [ext_resource type="AudioStream" uid="uid://dl1da220uiuxx" path="res://assets/music/1/Melody.wav" id="3_qmv3x"]
 [ext_resource type="PackedScene" uid="uid://bg4shy3d8638j" path="res://Game/audio_visualizer.tscn" id="4_7gi1t"]
 [ext_resource type="AudioStream" uid="uid://cw1hh66wg27dv" path="res://assets/music/1/Drum_Machine.wav" id="4_oomkl"]
-[ext_resource type="Script" path="res://Game/red_line.gd" id="5_72g0p"]
+[ext_resource type="Script" uid="uid://lw871uxyccy5" path="res://Game/red_line.gd" id="5_72g0p"]
 [ext_resource type="AudioStream" uid="uid://c1jnqravtvx6s" path="res://assets/music/1/Chords.wav" id="5_buohc"]
-[ext_resource type="Script" path="res://Game/note_paper.gd" id="5_fsxsm"]
+[ext_resource type="Script" uid="uid://nxgcqgtxk7kb" path="res://Game/note_paper.gd" id="5_fsxsm"]
 [ext_resource type="Texture2D" uid="uid://bgb2d08ufjgsu" path="res://assets/art/Hypetexts.png" id="12_glinl"]
 
 [sub_resource type="Animation" id="Animation_kul4i"]
