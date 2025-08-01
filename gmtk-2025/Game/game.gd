@@ -30,7 +30,10 @@ const NOTE = preload("res://Game/note.tscn")
 @export var perfect_time: float
 @export var nice_time: float
 
-var score: int = 0
+var score: int = 0:
+	set(value):
+		score = value
+		%NotePaper.score = value
 
 var note_colors
 
@@ -98,36 +101,38 @@ func _input(event: InputEvent) -> void:
 
 
 func _check_press(track:int):
+	var prev_score = score
 	if time_since_last_beat > miss_time:
 		time_till_next_beat = 0
 		await rhythm_notifier.beat
 		if time_till_next_beat > miss_time:
-			print('missed!!!')
+			pass
 		else:
 			if active_presses[track]:
 				if active_presses[track][active_beat % beat_count]:
-					
-					score += time_till_next_beat
+					active_presses[track][active_beat % beat_count] = 0
+					score += (miss_time - time_till_next_beat)*100
 					red_line.spawn_particle(track,[perfect_time,nice_time].map(func(x): return time_till_next_beat > x).count(true))
-				else:
-					print("missed!!")
+
 	else:
 		if active_presses[track]:
 			if active_presses[track][active_beat % beat_count]:
 				print(-time_since_last_beat)
-				score += time_since_last_beat
+				active_presses[track][active_beat % beat_count] = 0
+				score +=( miss_time - time_since_last_beat)*100
 				red_line.spawn_particle(track,[perfect_time,nice_time].map(func(x): return time_since_last_beat > x).count(true))
 			else:
 				if 0 <= ((active_beat % beat_count)-1):
 					if active_presses[track][(active_beat % beat_count)-1]:
 						print(-time_since_last_beat + rhythm_notifier.beat_length)
-						score += time_since_last_beat + rhythm_notifier.beat_length
+						active_presses[track][(active_beat % beat_count)-1] = 0
+						score += (miss_time-(time_since_last_beat + rhythm_notifier.beat_length))*100
 						red_line.spawn_particle(track,[perfect_time,nice_time].map(func(x): return time_since_last_beat + rhythm_notifier.beat_length > x).count(true))
-				print("missed!",time_since_last_beat)
+	if prev_score == score: score -= 30
 
 func _generate_random_loop():
 	playing_tracks = []
-	active_presses = next_presses
+	active_presses = next_presses.duplicate(true)
 	while playing_tracks.is_empty():
 		print(0)
 		next_presses = Array()

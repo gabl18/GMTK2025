@@ -1,13 +1,6 @@
-extends Node2D
+extends Label
 
-
-var messages: Array
-
-
-
-func print_new_message(message:String):
-	messages.append(message)
-	
-	
-	
-	
+var score: int = 0:
+	set(value):
+		score = value
+		text = "Score:\n"+str(value)

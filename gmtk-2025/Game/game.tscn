@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cmuytj83v71ok"]
+[gd_scene load_steps=26 format=3 uid="uid://cmuytj83v71ok"]
 
 [ext_resource type="Script" uid="uid://curnggefttx6x" path="res://Game/_game.gd" id="1_7gi1t"]
 [ext_resource type="Script" uid="uid://rarfh871whjk" path="res://Game/game.gd" id="1_7raqb"]
@@ -12,7 +12,8 @@
 [ext_resource type="Script" uid="uid://lw871uxyccy5" path="res://Game/red_line.gd" id="5_72g0p"]
 [ext_resource type="AudioStream" uid="uid://c1jnqravtvx6s" path="res://assets/music/1/Chords.wav" id="5_buohc"]
 [ext_resource type="Script" uid="uid://nxgcqgtxk7kb" path="res://Game/note_paper.gd" id="5_fsxsm"]
-[ext_resource type="Texture2D" uid="uid://fcl57t2emh7r" path="res://assets/art/Perfect_Nice_Good.png" id="6_4lqr4"]
+[ext_resource type="Texture2D" uid="uid://bi2pi5d3l6ngw" path="res://assets/art/Perfect_Nice_Good.png" id="6_4lqr4"]
+[ext_resource type="FontFile" uid="uid://bvmskx43n3rqa" path="res://assets/fonts/vinivicious.ttf" id="8_qlwvw"]
 [ext_resource type="Texture2D" uid="uid://bgb2d08ufjgsu" path="res://assets/art/Hypetexts.png" id="12_glinl"]
 
 [sub_resource type="Animation" id="Animation_kul4i"]
@@ -78,6 +79,13 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.996546, 1, 1, 1, 0)
 _limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.990338, 0.0619797), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_rpdke"]
+line_spacing = 0.0
+font = ExtResource("8_qlwvw")
+font_size = 40
+shadow_size = 5
+shadow_color = Color(0.152941, 0.152941, 0.152941, 0.0470588)
 
 [node name="Game" type="Control"]
 layout_mode = 3
@@ -213,12 +221,15 @@ hue_variation_max = 0.1
 hue_variation_curve = SubResource("Curve_rpdke")
 
 [node name="NotePaper" type="Label" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
-offset_left = -467.0
-offset_top = 70.0
-offset_right = -467.0
-offset_bottom = 70.0
-text = "012341"
+offset_left = -455.0
+offset_top = -7.0
+offset_right = -336.0
+offset_bottom = 109.0
+text = "Score:
+23245"
+label_settings = SubResource("LabelSettings_rpdke")
 script = ExtResource("5_fsxsm")
 
 [node name="GameControler" type="Node2D" parent="."]
