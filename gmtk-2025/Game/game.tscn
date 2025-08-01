@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cmuytj83v71ok"]
+[gd_scene load_steps=29 format=3 uid="uid://cmuytj83v71ok"]
 
 [ext_resource type="Script" uid="uid://curnggefttx6x" path="res://Game/_game.gd" id="1_7gi1t"]
 [ext_resource type="Script" uid="uid://rarfh871whjk" path="res://Game/game.gd" id="1_7raqb"]
@@ -16,6 +16,7 @@
 [ext_resource type="FontFile" uid="uid://bvmskx43n3rqa" path="res://assets/fonts/vinivicious.ttf" id="8_qlwvw"]
 [ext_resource type="Script" uid="uid://xjcihxdwm6ss" path="res://Game/tamagotchi.gd" id="10_rpdke"]
 [ext_resource type="Texture2D" uid="uid://bgb2d08ufjgsu" path="res://assets/art/Hypetexts.png" id="12_glinl"]
+[ext_resource type="AudioStream" uid="uid://1r5cu6jwaejv" path="res://assets/music/1/Bass.wav" id="13_33n3b"]
 
 [sub_resource type="Animation" id="Animation_kul4i"]
 length = 0.001
@@ -266,7 +267,7 @@ volume_db = -16.278
 bus = &"Music"
 
 [node name="1" type="AudioStreamPlayer" parent="GameControler"]
-stream = ExtResource("3_buohc")
+stream = ExtResource("13_33n3b")
 volume_db = -5.878
 bus = &"1"
 

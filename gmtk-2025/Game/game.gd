@@ -30,6 +30,8 @@ const NOTE = preload("res://Game/note.tscn")
 @export var perfect_time: float
 @export var nice_time: float
 
+var difficulty = 1
+
 var score: int = 0:
 	set(value):
 		score = value
@@ -38,9 +40,9 @@ var score: int = 0:
 var note_colors
 
 var presses :=[
-	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+	[1,0,1,0,1,1,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,1,1,0],
 	[1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0],
-	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+	[1,0,0,1,1,1,0,0,1,0,0,1,1,1,0,0,1,0,0,1,1,1,0,0,1,0,0,1,1,1,0,0],
 	[1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 ]
@@ -58,7 +60,7 @@ var playing_tracks := []
 
 func _ready() -> void:
 	
-	
+	difficulty = 1
 	rhythm_notifier.beat.connect(_try_next_loop)
 	rhythm_notifier.beat.connect(_spawn_next_nodes)
 	rhythm_notifier.beat.connect(_update_beat_timer)
@@ -73,6 +75,7 @@ func _ready() -> void:
 	
 	while true:
 		%Tamagotchi.loops += 1
+		difficulty += randf_range(0.1,0.2)
 		vinyl_player.change_active_tracks(next_presses.map(func(x): return x is Array))
 		_play_loop(playing_tracks)
 		_generate_random_loop()
@@ -134,8 +137,7 @@ func _check_press(track:int):
 func _generate_random_loop():
 	playing_tracks = []
 	active_presses = next_presses.duplicate(true)
-	while playing_tracks.is_empty():
-		print(0)
+	while playing_tracks.size() > floori(difficulty) or playing_tracks.is_empty():
 		next_presses = Array()
 		playing_tracks = []
 		for i in range(len(tracks)):
@@ -144,6 +146,7 @@ func _generate_random_loop():
 				playing_tracks.append(tracks[i])
 			else:
 				next_presses.append(false)
+	print(playing_tracks, floori(difficulty))
 
 
 func _play_first_loop():
