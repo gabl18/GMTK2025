@@ -16,9 +16,7 @@ var generator_position := [
 ]
 
 func spawn_particle(track_idx:int, texture_idx:int):
-	
 	var particle_gen: CPUParticles2D
-	print(particle_gens)
 	
 	var ready_gens = particle_gens.filter(func(x): return not x.emitting and not x.has_meta("last_operation"))
 	if not ready_gens.is_empty():
@@ -29,13 +27,13 @@ func spawn_particle(track_idx:int, texture_idx:int):
 		add_child(particle_gen)
 		particle_gens.append(particle_gen)
 	
-		if particle_gens.size() > 2:
+		if particle_gens.size() > 5:
 			particle_gens[0].set_meta('last_operation',true)
 			particle_gens.back().finished.connect(_kill_particle_gen.bind(particle_gen))
 			
-	print(particle_gen)
 	particle_gen.position = generator_position[track_idx]
 	particle_gen.color = note_colors[track_idx]
+	particle_gen.texture = textures[texture_idx]
 	await get_tree().process_frame
 	particle_gen.emitting = true
 	

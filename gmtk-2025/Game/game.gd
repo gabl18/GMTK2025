@@ -27,6 +27,11 @@ const NOTE = preload("res://Game/note.tscn")
 
 @export var miss_time: float
 
+@export var perfect_time: float
+@export var nice_time: float
+
+var score: int = 0
+
 var note_colors
 
 var presses :=[
@@ -101,15 +106,24 @@ func _check_press(track:int):
 		else:
 			if active_presses[track]:
 				if active_presses[track][active_beat % beat_count]:
-					red_line.spawn_particle(track,0)
+					
+					score += time_till_next_beat
+					red_line.spawn_particle(track,[perfect_time,nice_time].map(func(x): return time_till_next_beat > x).count(true))
 				else:
 					print("missed!!")
 	else:
 		if active_presses[track]:
 			if active_presses[track][active_beat % beat_count]:
-				red_line.spawn_particle(track,0)
+				print(-time_since_last_beat)
+				score += time_since_last_beat
+				red_line.spawn_particle(track,[perfect_time,nice_time].map(func(x): return time_since_last_beat > x).count(true))
 			else:
-				print("missed!")
+				if 0 <= ((active_beat % beat_count)-1):
+					if active_presses[track][(active_beat % beat_count)-1]:
+						print(-time_since_last_beat + rhythm_notifier.beat_length)
+						score += time_since_last_beat + rhythm_notifier.beat_length
+						red_line.spawn_particle(track,[perfect_time,nice_time].map(func(x): return time_since_last_beat + rhythm_notifier.beat_length > x).count(true))
+				print("missed!",time_since_last_beat)
 
 func _generate_random_loop():
 	playing_tracks = []
