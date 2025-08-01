@@ -13,7 +13,7 @@ const NOTE = preload("res://Game/note.tscn")
 @onready var player_3: AudioStreamPlayer = $"3"
 @onready var player_4: AudioStreamPlayer = $"4"
 @onready var player_5: AudioStreamPlayer = $"5"
-@onready var tracks = [player_1,player_2, player_3, player_4,player_5]
+@onready var tracks = [player_1,player_2, player_3, player_4]#player_5
 
 @onready var note_spawn_location_1: Node2D = %Note_Spawn_location_1
 @onready var note_spawn_location_2: Node2D = %Note_Spawn_location_2
@@ -30,6 +30,19 @@ const NOTE = preload("res://Game/note.tscn")
 @export var perfect_time: float
 @export var nice_time: float
 
+@export var Stream_1: Array[AudioStream]
+@export var Presses_1: Array[PressRes]
+@export var Stream_2: Array[AudioStream]
+@export var Presses_2: Array[PressRes]
+@export var Stream_3: Array[AudioStream]
+@export var Presses_3: Array[PressRes]
+@export var Stream_4: Array[AudioStream]
+@export var Presses_4: Array[PressRes]
+@export var Stream_5: Array[AudioStream]
+@export var Presses_5: Array[PressRes]
+@onready var Streams = [Stream_1,Stream_2,Stream_3,Stream_4,Stream_5]
+@onready var Pressess = [Presses_1,Presses_2,Presses_3,Presses_4,Presses_5]
+
 var difficulty = 1
 
 var score: int = 0:
@@ -39,13 +52,7 @@ var score: int = 0:
 
 var note_colors
 
-var presses :=[
-	[1,0,1,0,1,1,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,1,1,0],
-	[1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0],
-	[1,0,0,1,1,1,0,0,1,0,0,1,1,1,0,0,1,0,0,1,1,1,0,0,1,0,0,1,1,1,0,0],
-	[1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
-	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-]
+
 
 var active_presses = []
 var next_presses = []
@@ -76,7 +83,7 @@ func _ready() -> void:
 	while true:
 		%Tamagotchi.loops += 1
 		difficulty += randf_range(0.1,0.2)
-		vinyl_player.change_active_tracks(next_presses.map(func(x): return x is Array))
+		vinyl_player.change_active_tracks(next_presses.map(func(x): return x is not bool))
 		_play_loop(playing_tracks)
 		_generate_random_loop()
 	
@@ -142,11 +149,13 @@ func _generate_random_loop():
 		playing_tracks = []
 		for i in range(len(tracks)):
 			if randi() % 2:
-				next_presses.append(presses[i])
+				var track_idx = randi_range(0,Streams[i].size()-1)
+				next_presses.append(Pressess[i][track_idx])
 				playing_tracks.append(tracks[i])
+				tracks[i].set_meta("next",Streams[i][track_idx])
+				
 			else:
 				next_presses.append(false)
-	print(playing_tracks, floori(difficulty))
 
 
 func _play_first_loop():
@@ -156,6 +165,8 @@ func _play_first_loop():
 func _play_loop(active_tracks):
 	base.play()
 	for track in active_tracks:
+		
+		track.stream = track.get_meta("next")
 		track.play()
 
 
@@ -167,7 +178,7 @@ func _update_beat_timer(beat:int):
 func _spawn_next_nodes(beat:int):
 	for i in range(len(next_presses)):
 		if next_presses[i]:
-			if next_presses[i][beat % beat_count] == 1:
+			if next_presses[i].Presses[beat % beat_count] == true:
 				var new_tween = get_tree().create_tween()
 				var new_note = NOTE.instantiate()
 				
