@@ -35,3 +35,12 @@ func _on_control_gui_input(event: InputEvent) -> void:
 				pause = true
 				%Camera2D.make_current()
 				$AnimationPlayer.play("to_credits")
+
+
+func _on_control_2_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+		if pause:
+			if credits:
+				credits = false
+				pause = true
+				$AnimationPlayer.play("back_credits")

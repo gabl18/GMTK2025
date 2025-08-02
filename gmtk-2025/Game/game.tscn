@@ -690,6 +690,14 @@ offset_right = -230.0
 offset_bottom = 233.0
 mouse_default_cursor_shape = 2
 
+[node name="Control2" type="Control" parent="CreditsHand"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -388.4
+offset_top = 191.55
+offset_right = -348.4
+offset_bottom = 231.55
+
 [node name="CreditsLabel" type="Label" parent="CreditsHand"]
 offset_left = -224.025
 offset_top = 79.8867
@@ -850,3 +858,4 @@ position = Vector2(0, 232)
 rotation = -0.00464491
 
 [connection signal="gui_input" from="CreditsHand/Control" to="CreditsHand" method="_on_control_gui_input"]
+[connection signal="gui_input" from="CreditsHand/Control2" to="CreditsHand" method="_on_control_2_gui_input"]
