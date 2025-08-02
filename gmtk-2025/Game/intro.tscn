@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbc0dys6evopg"]
+
+[ext_resource type="Script" uid="uid://b2k5sfq727e8p" path="res://Game/intro.gd" id="1_k8cul"]
+[ext_resource type="Texture2D" uid="uid://2nno7406gi3h" path="res://assets/art/Intro_Scene_Spritesheet.png" id="2_aeqor"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k8cul"]
+atlas = ExtResource("2_aeqor")
+region = Rect2(15180, 0, 1012, 570)
+
+[node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k8cul")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_k8cul")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1

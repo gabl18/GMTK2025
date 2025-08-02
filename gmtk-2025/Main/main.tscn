@@ -1,11 +1,98 @@
-[gd_scene load_steps=3 format=3 uid="uid://hcw7nfruroab"]
+[gd_scene load_steps=14 format=3 uid="uid://hcw7nfruroab"]
 
 [ext_resource type="Texture2D" uid="uid://ihc5vq0gx7jh" path="res://assets/art/Background.png" id="1_2w1kt"]
-[ext_resource type="PackedScene" uid="uid://cmuytj83v71ok" path="res://Game/game.tscn" id="2_qvhan"]
+[ext_resource type="Script" uid="uid://becxofm53w5m" path="res://Main/main.gd" id="1_eunhr"]
+[ext_resource type="Texture2D" uid="uid://c1n0jcqqkxwlr" path="res://assets/art/Vinyl_Player_Spritesheet.png" id="3_eunhr"]
+[ext_resource type="FontFile" uid="uid://53sgq0o8p6te" path="res://assets/fonts/SharpMessLite.ttf" id="3_k3v36"]
+[ext_resource type="Texture2D" uid="uid://dcq8eerxektvy" path="res://assets/art/Splash_Screen.png" id="3_qvhan"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_liyct"]
+font = ExtResource("3_k3v36")
+font_size = 38
+
+[sub_resource type="Animation" id="Animation_ib3t1"]
+resource_name = "blink"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.49, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.458824), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_liyct"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f6fdm"]
+_data = {
+&"RESET": SubResource("Animation_liyct"),
+&"blink": SubResource("Animation_ib3t1")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3v36"]
+atlas = ExtResource("3_eunhr")
+region = Rect2(0, 0, 960, 616)
+
+[sub_resource type="Animation" id="Animation_eunhr"]
+resource_name = "hover"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Splashscreen:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 2.37842, 1.10957),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.03, 1.03), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_k3v36"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Splashscreen:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_liyct"]
+_data = {
+&"RESET": SubResource("Animation_k3v36"),
+&"hover": SubResource("Animation_eunhr")
+}
 
 [node name="Main" type="Node"]
+script = ExtResource("1_eunhr")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="."]
+z_index = -3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,4 +102,51 @@ texture = ExtResource("1_2w1kt")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Game" parent="." instance=ExtResource("2_qvhan")]
+[node name="PressAnyKeyToStart" type="Label" parent="."]
+unique_name_in_owner = true
+z_index = 10
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -82.0
+offset_top = -30.0
+offset_right = 58.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press Any key to start"
+label_settings = SubResource("LabelSettings_liyct")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PressAnyKeyToStart"]
+libraries = {
+&"": SubResource("AnimationLibrary_f6fdm")
+}
+autoplay = "blink"
+
+[node name="Center" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VinylPlayer" type="Sprite2D" parent="Center"]
+z_index = -1
+texture = SubResource("AtlasTexture_k3v36")
+
+[node name="Splashscreen" type="Sprite2D" parent="Center"]
+unique_name_in_owner = true
+z_index = 6
+texture = ExtResource("3_qvhan")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Center/Splashscreen"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_liyct")
+}
+autoplay = "hover"

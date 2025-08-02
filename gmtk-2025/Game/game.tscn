@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://lw871uxyccy5" path="res://Game/red_line.gd" id="5_72g0p"]
 [ext_resource type="Script" uid="uid://nxgcqgtxk7kb" path="res://Game/note_paper.gd" id="5_fsxsm"]
 [ext_resource type="Texture2D" uid="uid://bi2pi5d3l6ngw" path="res://assets/art/Perfect_Nice_Good.png" id="6_4lqr4"]
-[ext_resource type="FontFile" uid="uid://c4o156xu2ofp0" path="res://assets/fonts/SharpMessLite.ttf" id="8_2cxdh"]
+[ext_resource type="FontFile" uid="uid://53sgq0o8p6te" path="res://assets/fonts/SharpMessLite.ttf" id="8_2cxdh"]
 [ext_resource type="Script" uid="uid://xjcihxdwm6ss" path="res://Game/tamagotchi.gd" id="10_rpdke"]
 [ext_resource type="AudioStream" uid="uid://rusw5pmxb8ur" path="res://assets/music/Base.wav" id="12_33n3b"]
 [ext_resource type="Texture2D" uid="uid://bgb2d08ufjgsu" path="res://assets/art/Hypetexts.png" id="12_glinl"]

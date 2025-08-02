@@ -24,7 +24,7 @@ var needle_track_rotations := [
 
 var _active_tracks: Array
 var needle_goal: int
-var pre_pause_rotation: int
+var pre_pause_rotation: float
 
 
 func change_turn_speed(rps:float):
