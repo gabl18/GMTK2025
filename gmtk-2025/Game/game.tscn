@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://nxgcqgtxk7kb" path="res://Game/note_paper.gd" id="5_fsxsm"]
 [ext_resource type="Texture2D" uid="uid://bi2pi5d3l6ngw" path="res://assets/art/Perfect_Nice_Good.png" id="6_4lqr4"]
 [ext_resource type="FontFile" uid="uid://53sgq0o8p6te" path="res://assets/fonts/SharpMessLite.ttf" id="8_2cxdh"]
-[ext_resource type="Script" uid="uid://xjcihxdwm6ss" path="res://Game/tamagotchi.gd" id="10_rpdke"]
+[ext_resource type="Script" path="res://Game/tamagotchi.gd" id="10_rpdke"]
 [ext_resource type="Texture2D" uid="uid://c4i5a1pgnkwca" path="res://assets/art/Credits_Hand.png" id="11_4w5h0"]
 [ext_resource type="Texture2D" uid="uid://bpm3di1h6bnqi" path="res://assets/art/Volume_Hand.png" id="11_17dmm"]
 [ext_resource type="Texture2D" uid="uid://das053ig8vtla" path="res://assets/art/Troll_Hand.png" id="12_07gdo"]
@@ -125,107 +125,97 @@ font_size = 40
 [sub_resource type="LabelSettings" id="LabelSettings_2tlly"]
 font = ExtResource("8_2cxdh")
 font_size = 37
-font_color = Color(0.73072, 0.261572, 0.687961, 1)
+font_color = Color(0.795714, 0.294952, 0.271991, 1)
 outline_size = 10
 outline_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ovh6"]
 font = ExtResource("8_2cxdh")
 font_size = 37
-font_color = Color(0.335307, 0.70166, 0.325744, 1)
+font_color = Color(0.722244, 0.584433, 0.296675, 1)
 outline_size = 10
 outline_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_5ekf0"]
 font = ExtResource("8_2cxdh")
 font_size = 37
-font_color = Color(0.670096, 0.541315, 0.133905, 1)
+font_color = Color(0.278807, 0.64125, 0.431111, 1)
 outline_size = 10
 outline_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_xlk6q"]
 font = ExtResource("8_2cxdh")
 font_size = 37
-font_color = Color(0.926679, 0.278202, 0.30634, 1)
+font_color = Color(0.872429, 0.287028, 0.603898, 1)
 outline_size = 10
 outline_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ovh6"]
 
-[sub_resource type="Animation" id="Animation_vtcgr"]
-resource_name = "slide_in"
-length = 10.0
+[sub_resource type="Animation" id="Animation_7ovh6"]
+resource_name = "Credits"
+length = 13.0
+loop_mode = 1
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
+tracks/0/path = NodePath("CreditsLabel:modulate")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.5, 2.4, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-929, 224), Vector2(-582, 197)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
+tracks/1/path = NodePath("CreditsLabel2:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(3, 3.5, 5, 5.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [-3.72977, -3.46077]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("%CreditsHand/../VolumeHand:position")
+tracks/2/path = NodePath("CreditsLabel3:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(0.406126, 1),
+"times": PackedFloat32Array(5.5, 6, 7.5, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1087, 192), Vector2(813, 93)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%CreditsHand/../VolumeHand:rotation")
+tracks/3/path = NodePath("CreditsLabel4:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.733333),
-"transitions": PackedFloat32Array(2.63902, 1),
+"times": PackedFloat32Array(8, 8.5, 10, 10.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [-0.434587, 0.125138]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("%CreditsHand/../LolHand:position")
+tracks/4/path = NodePath("CreditsLabel5:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(2.43333, 3.13333, 8.73333, 9.83333),
-"transitions": PackedFloat32Array(1, 0.517632, 0.517632, 1),
+"times": PackedFloat32Array(10.5, 11, 12.5, 13),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-351, -601), Vector2(-351, -601), Vector2(-351, -601), Vector2(-134, -174)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("%CreditsHand/../LolHand:rotation")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(2.43333, 3.13333, 8.73333, 9.83333),
-"transitions": PackedFloat32Array(1, 0.435275, 0.435275, 1),
-"update": 0,
-"values": [0.931379, 1.16975, 1.16975, 1.39801]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_17dmm"]
@@ -411,43 +401,119 @@ tracks/14/keys = {
 "values": [0.668152]
 }
 
-[sub_resource type="Animation" id="Animation_07gdo"]
-resource_name = "to_credits"
+[sub_resource type="Animation" id="Animation_2tlly"]
+resource_name = "back_credits"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Camera2D:zoom")
+tracks/0/path = NodePath("%Camera2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 0.392292),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(4, 4)]
+"values": [Vector2(-289, 226), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%Camera2D:position")
+tracks/1/path = NodePath("%Camera2D:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 0.392),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-289, 226)]
+"values": [-0.191986, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("%Camera2D:rotation")
+tracks/2/path = NodePath("%Camera2D:zoom")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 4.14106),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, -0.191986]
+"values": [Vector2(4, 4), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vtcgr"]
+resource_name = "slide_in"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-929, 224), Vector2(-582, 197)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-3.72977, -3.46077]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%CreditsHand/../VolumeHand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.406126, 1),
+"update": 0,
+"values": [Vector2(1087, 192), Vector2(813, 93)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%CreditsHand/../VolumeHand:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.733333),
+"transitions": PackedFloat32Array(2.63902, 1),
+"update": 0,
+"values": [-0.434587, 0.125138]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%CreditsHand/../LolHand:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.43333, 3.13333, 8.73333, 9.83333),
+"transitions": PackedFloat32Array(1, 0.517632, 0.517632, 1),
+"update": 0,
+"values": [Vector2(-351, -601), Vector2(-351, -601), Vector2(-351, -601), Vector2(-134, -174)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%CreditsHand/../LolHand:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2.43333, 3.13333, 8.73333, 9.83333),
+"transitions": PackedFloat32Array(1, 0.435275, 0.435275, 1),
+"update": 0,
+"values": [0.931379, 1.16975, 1.16975, 1.39801]
 }
 
 [sub_resource type="Animation" id="Animation_rlpku"]
@@ -526,109 +592,43 @@ tracks/5/keys = {
 "values": [3.9588]
 }
 
-[sub_resource type="Animation" id="Animation_2tlly"]
-resource_name = "back_credits"
+[sub_resource type="Animation" id="Animation_07gdo"]
+resource_name = "to_credits"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("%Camera2D:position")
+tracks/0/path = NodePath("../Camera2D:zoom")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(1, 0.392292),
 "update": 0,
-"values": [Vector2(-289, 226), Vector2(0, 0)]
+"values": [Vector2(1, 1), Vector2(4, 4)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("%Camera2D:rotation")
+tracks/1/path = NodePath("%Camera2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(1, 0.392),
 "update": 0,
-"values": [-0.191986, 0.0]
+"values": [Vector2(0, 0), Vector2(-289, 226)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("%Camera2D:zoom")
+tracks/2/path = NodePath("%Camera2D:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"transitions": PackedFloat32Array(1, 4.14106),
 "update": 0,
-"values": [Vector2(4, 4), Vector2(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_7ovh6"]
-resource_name = "Credits"
-length = 13.0
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CreditsLabel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 2.4, 3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CreditsLabel2:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(3, 3.5, 5, 5.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CreditsLabel3:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(5.5, 6, 7.5, 8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CreditsLabel4:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(8, 8.5, 10, 10.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("CreditsLabel5:modulate")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(10.5, 11, 12.5, 13),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [0.0, -0.191986]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_07gdo"]
@@ -953,18 +953,15 @@ text = "K"
 label_settings = SubResource("LabelSettings_xlk6q")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Elgatoo"]
-bus = &"SFX"
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Elgatoo"]
-bus = &"SFX"
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Elgatoo"]
-bus = &"SFX"
 
 [node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="Elgatoo"]
-bus = &"SFX"
 
 [node name="VSlider" type="VSlider" parent="."]
+layout_mode = 0
 offset_left = 335.0
 offset_top = -93.0
 offset_right = 416.0
@@ -1143,22 +1140,16 @@ audio_stream_player = NodePath("../Base")
 metadata/_custom_type_script = "uid://n2up8pxmptqx"
 
 [node name="SFXPlayer" type="AudioStreamPlayer" parent="GameControler"]
-bus = &"TÖTTÖT"
 
 [node name="SFXPlayer2" type="AudioStreamPlayer" parent="GameControler"]
-bus = &"TÖTTÖT"
 
 [node name="SFXPlayer3" type="AudioStreamPlayer" parent="GameControler"]
-bus = &"TÖTTÖT"
 
 [node name="SFXPlayer4" type="AudioStreamPlayer" parent="GameControler"]
-bus = &"TÖTTÖT"
 
 [node name="SFXPlayer5" type="AudioStreamPlayer" parent="GameControler"]
-bus = &"TÖTTÖT"
 
 [node name="SFXPlayer6" type="AudioStreamPlayer" parent="GameControler"]
-bus = &"TÖTTÖT"
 
 [node name="Note_Spawns" type="Node2D" parent="."]
 rotation = 1.06068
