@@ -34,6 +34,7 @@ func change_turn_speed(rps:float):
 func reset_needle():
 	var tween = get_tree().create_tween()
 	tween.tween_property(needle,"rotation_degrees",needle_off_rotation,0.5)
+	kill_tween(tween)
 
 
 func change_active_tracks(active_tracks:Array):
@@ -54,6 +55,7 @@ func change_active_tracks(active_tracks:Array):
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property(needle,"rotation_degrees",needle_track_rotations[needle_goal],0.5)
+	kill_tween(tween)
 	
 
 func pause_game():
@@ -72,9 +74,13 @@ func unpause_game():
 	$AudioVisualizer.show()
 	var tween = get_tree().create_tween()
 	tween.tween_property(needle,"rotation_degrees",pre_pause_rotation,0.5)
+	kill_tween(tween)
 	spinner.play()
 	for child in disc.get_children():
 		if child is Note:
 			child.unpause()
-	
-	
+
+
+func kill_tween(tween:Tween):
+	await tween.finished
+	tween.kill()

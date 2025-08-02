@@ -61,8 +61,6 @@ var note_colors
 var active_presses = []
 var next_presses = []
 var active_beat = 0
-var time_since_last_beat = 0
-var time_till_next_beat = 0
 
 var paused := false
 
@@ -76,7 +74,6 @@ func _ready() -> void:
 	difficulty = 1
 	rhythm_notifier.beat.connect(_try_next_loop)
 	rhythm_notifier.beat.connect(_spawn_next_nodes)
-	rhythm_notifier.beat.connect(_update_beat_timer)
 	
 	vinyl_player.change_turn_speed(1/(rhythm_notifier.beat_length*2 * song_beat_count))
 	
@@ -94,11 +91,6 @@ func _ready() -> void:
 		_generate_random_loop()
 	
 		await _next_loop
-
-
-func _process(delta: float) -> void:
-	time_since_last_beat += delta
-	time_till_next_beat += delta
 
 
 func _input(event: InputEvent) -> void:
@@ -119,11 +111,22 @@ func _input(event: InputEvent) -> void:
 				base.stream_paused = false
 				for track in tracks:
 					track.stream_paused = false
+					
+				for tween in get_tree().get_processed_tweens():
+					tween.play()
+					if not tween.is_running():
+						tween.kill()
 			else:
 				vinyl_player.pause_game()
 				base.stream_paused = true
 				for track in tracks:
 					track.stream_paused = true
+				
+				for tween in get_tree().get_processed_tweens():
+					if not tween.is_running():
+						tween.kill()
+					else: tween.pause()
+					
 			paused = not paused
 
 
@@ -153,40 +156,6 @@ func _check_press(track:int):
 				return
 	
 	score -= 30
-
-
-
-		
-	#var prev_score = score
-	#if not active_presses.is_empty():
-		#if time_since_last_beat > miss_time:
-			#time_till_next_beat = 0
-			#await rhythm_notifier.beat
-			#if time_till_next_beat > miss_time:
-				#pass
-			#else:
-				#if active_presses[track]:
-					#if active_presses[track].Presses[active_beat % beat_count]:
-						#active_presses[track][active_beat % beat_count] = false
-						#score += (miss_time - time_till_next_beat)*100
-						#red_line.spawn_particle(track,[perfect_time,nice_time].map(func(x): return time_till_next_beat > x).count(true))
-#
-		#else:
-			#if active_presses[track]:
-				#if active_presses[track].Presses[active_beat % beat_count]:
-					#print(-time_since_last_beat)
-					#active_presses[track].Presses[active_beat % beat_count] = false
-					#score +=( miss_time - time_since_last_beat)*100
-					#red_line.spawn_particle(track,[perfect_time,nice_time].map(func(x): return time_since_last_beat > x).count(true))
-				#else:
-					#if 0 <= ((active_beat % beat_count)-1):
-						#if active_presses[track].Presses[(active_beat % beat_count)-1]:
-							#print(-time_since_last_beat + rhythm_notifier.beat_length)
-							#active_presses[track].Presses[(active_beat % beat_count)-1] = false
-							#score += (miss_time-(time_since_last_beat + rhythm_notifier.beat_length))*100
-							#red_line.spawn_particle(track,[perfect_time,nice_time].map(func(x): return time_since_last_beat + rhythm_notifier.beat_length > x).count(true))
-	#if prev_score == score: score -= 30
-
 
 func _generate_random_loop():
 	var prev_tracks = playing_tracks.duplicate(true).map(func(x): return x.to_string())
@@ -224,11 +193,6 @@ func _play_loop(active_tracks):
 		track.play()
 
 
-func _update_beat_timer(beat:int):
-	active_beat = beat
-	time_since_last_beat = 0
-
-
 func _spawn_next_nodes(beat:int):
 	for i in range(len(next_presses)):
 		if next_presses[i]:
@@ -244,7 +208,13 @@ func _spawn_next_nodes(beat:int):
 				new_note.set_track(i)
 				new_note.global_rotation = 0
 				new_note.global_position = note_spawn_locations[i].global_position
+				kill_tween(new_tween)
+				
 
+
+func kill_tween(tween:Tween):
+	await tween.finished
+	tween.kill()
 
 func _try_next_loop(beat:int):
 	if beat % beat_count == 0:

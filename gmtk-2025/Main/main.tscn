@@ -1,11 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://hcw7nfruroab"]
+[gd_scene load_steps=14 format=3 uid="uid://hcw7nfruroab"]
 
 [ext_resource type="Texture2D" uid="uid://ihc5vq0gx7jh" path="res://assets/art/Background.png" id="1_2w1kt"]
 [ext_resource type="Script" uid="uid://becxofm53w5m" path="res://Main/main.gd" id="1_eunhr"]
-[ext_resource type="Texture2D" uid="uid://c1n0jcqqkxwlr" path="res://assets/art/Vinyl_Player_Spritesheet.png" id="3_eunhr"]
 [ext_resource type="FontFile" uid="uid://53sgq0o8p6te" path="res://assets/fonts/SharpMessLite.ttf" id="3_k3v36"]
 [ext_resource type="Texture2D" uid="uid://dcq8eerxektvy" path="res://assets/art/Splash_Screen.png" id="3_qvhan"]
 [ext_resource type="PackedScene" uid="uid://bbc0dys6evopg" path="res://Game/intro.tscn" id="4_k3v36"]
+[ext_resource type="Texture2D" uid="uid://cdkb3vck8fie1" path="res://assets/art/Intro_Scene_Background_without_Background.png" id="4_liyct"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_liyct"]
 font = ExtResource("3_k3v36")
@@ -47,10 +47,6 @@ _data = {
 &"RESET": SubResource("Animation_liyct"),
 &"blink": SubResource("Animation_ib3t1")
 }
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k3v36"]
-atlas = ExtResource("3_eunhr")
-region = Rect2(0, 0, 960, 616)
 
 [sub_resource type="Animation" id="Animation_k3v36"]
 length = 0.001
@@ -138,7 +134,7 @@ grow_vertical = 2
 
 [node name="VinylPlayer" type="Sprite2D" parent="Center"]
 z_index = -1
-texture = SubResource("AtlasTexture_k3v36")
+texture = ExtResource("4_liyct")
 
 [node name="Splashscreen" type="Sprite2D" parent="Center"]
 unique_name_in_owner = true

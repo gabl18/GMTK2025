@@ -9,7 +9,7 @@ func _ready() -> void:
 	await any_input
 	var tween = get_tree().create_tween()
 	tween.tween_property(%Splashscreen,"modulate:a",0,1)
-	
+
 	$PressAnyKeyToStart.hide()
 	
 	$Intro.play_anim()
@@ -22,6 +22,7 @@ func _ready() -> void:
 	var game = GAME.instantiate()
 	add_child(game)
 	
+	tween.kill()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
