@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://cmuytj83v71ok"]
+[gd_scene load_steps=61 format=4 uid="uid://cmuytj83v71ok"]
 
 [ext_resource type="Script" uid="uid://curnggefttx6x" path="res://Game/_game.gd" id="1_7gi1t"]
 [ext_resource type="Script" uid="uid://rarfh871whjk" path="res://Game/game.gd" id="1_7raqb"]
@@ -12,12 +12,16 @@
 [ext_resource type="FontFile" uid="uid://53sgq0o8p6te" path="res://assets/fonts/SharpMessLite.ttf" id="8_2cxdh"]
 [ext_resource type="Script" uid="uid://xjcihxdwm6ss" path="res://Game/tamagotchi.gd" id="10_rpdke"]
 [ext_resource type="Texture2D" uid="uid://c4i5a1pgnkwca" path="res://assets/art/Credits_Hand.png" id="11_4w5h0"]
+[ext_resource type="Texture2D" uid="uid://bpm3di1h6bnqi" path="res://assets/art/Volume_Hand.png" id="11_17dmm"]
+[ext_resource type="Texture2D" uid="uid://das053ig8vtla" path="res://assets/art/Troll_Hand.png" id="12_07gdo"]
 [ext_resource type="AudioStream" uid="uid://rusw5pmxb8ur" path="res://assets/music/Base.wav" id="12_33n3b"]
 [ext_resource type="Texture2D" uid="uid://bgb2d08ufjgsu" path="res://assets/art/Hypetexts.png" id="12_glinl"]
 [ext_resource type="Script" uid="uid://bwck03udtj4c8" path="res://Game/credits_hand.gd" id="12_vtcgr"]
+[ext_resource type="Script" uid="uid://enkkn4dmiw1n" path="res://Game/elgatoo.gd" id="13_2tlly"]
 [ext_resource type="AudioStream" uid="uid://bm5d6tr4xni8x" path="res://assets/music/Meli/1_1.wav" id="13_33n3b"]
 [ext_resource type="AudioStream" uid="uid://brkgdnjgtxlw4" path="res://assets/music/Meli/1_2.wav" id="13_ss60k"]
 [ext_resource type="AudioStream" uid="uid://fv25hm3c68jl" path="res://assets/music/Meli/1_3.wav" id="14_2cxdh"]
+[ext_resource type="Texture2D" uid="uid://dyu17c0dx2qix" path="res://assets/art/Button_Spritesheet.png" id="14_7ovh6"]
 [ext_resource type="AudioStream" uid="uid://cokj1y8mu8xpt" path="res://assets/music/Meli/2_1.wav" id="14_rxmp4"]
 [ext_resource type="Script" uid="uid://cq30tl1o26ce8" path="res://Game/Press_Res.gd" id="15_2cxdh"]
 [ext_resource type="AudioStream" uid="uid://csefda2o2xvkx" path="res://assets/music/Meli/3_1.wav" id="15_qyr8x"]
@@ -104,8 +108,41 @@ line_spacing = 0.0
 font = ExtResource("8_2cxdh")
 font_size = 32
 
+[sub_resource type="LabelSettings" id="LabelSettings_07gdo"]
+font = ExtResource("8_2cxdh")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_2tlly"]
+font = ExtResource("8_2cxdh")
+font_size = 37
+font_color = Color(0.73072, 0.261572, 0.687961, 1)
+outline_size = 10
+outline_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ovh6"]
+font = ExtResource("8_2cxdh")
+font_size = 37
+font_color = Color(0.335307, 0.70166, 0.325744, 1)
+outline_size = 10
+outline_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ekf0"]
+font = ExtResource("8_2cxdh")
+font_size = 37
+font_color = Color(0.670096, 0.541315, 0.133905, 1)
+outline_size = 10
+outline_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xlk6q"]
+font = ExtResource("8_2cxdh")
+font_size = 37
+font_color = Color(0.926679, 0.278202, 0.30634, 1)
+outline_size = 10
+outline_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+
 [sub_resource type="Animation" id="Animation_vtcgr"]
 resource_name = "slide_in"
+length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -129,6 +166,54 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-3.72977, -3.46077]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%CreditsHand/../VolumeHand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.406126, 1),
+"update": 0,
+"values": [Vector2(1087, 192), Vector2(813, 93)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%CreditsHand/../VolumeHand:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.733333),
+"transitions": PackedFloat32Array(2.63902, 1),
+"update": 0,
+"values": [-0.434587, 0.125138]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%CreditsHand/../LolHand:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(2.43333, 3.13333, 8.73333, 9.83333),
+"transitions": PackedFloat32Array(1, 0.517632, 0.517632, 1),
+"update": 0,
+"values": [Vector2(-351, -601), Vector2(-351, -601), Vector2(-351, -601), Vector2(-134, -174)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%CreditsHand/../LolHand:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(2.43333, 3.13333, 8.73333, 9.83333),
+"transitions": PackedFloat32Array(1, 0.435275, 0.435275, 1),
+"update": 0,
+"values": [0.931379, 1.16975, 1.16975, 1.39801]
 }
 
 [sub_resource type="Animation" id="Animation_17dmm"]
@@ -265,6 +350,54 @@ tracks/10/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("%CreditsHand/../VolumeHand:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1087, 192)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("%CreditsHand/../VolumeHand:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.434587]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("%CreditsHand/../LolHand:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-269, -499)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("%CreditsHand/../LolHand:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.668152]
+}
 
 [sub_resource type="Animation" id="Animation_07gdo"]
 resource_name = "to_credits"
@@ -331,6 +464,54 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.287175, 1),
 "update": 0,
 "values": [2.78205, 2.96706]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%CreditsHand/../VolumeHand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.112656, 1),
+"update": 0,
+"values": [Vector2(813, 93), Vector2(1021, -93)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%CreditsHand/../VolumeHand:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.153893, 1),
+"update": 0,
+"values": [0.125138, 0.61345]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%CreditsHand/../LolHand:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-209, -669)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%CreditsHand/../LolHand:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [3.9588]
 }
 
 [sub_resource type="Animation" id="Animation_2tlly"]
@@ -666,6 +847,93 @@ text = "LOOPS:
 label_settings = SubResource("LabelSettings_qlwvw")
 horizontal_alignment = 1
 script = ExtResource("10_rpdke")
+
+[node name="VolumeHand" type="Sprite2D" parent="."]
+position = Vector2(1087, 192)
+rotation = -0.434587
+texture = ExtResource("11_17dmm")
+
+[node name="Label" type="Label" parent="VolumeHand"]
+offset_left = -349.319
+offset_top = 111.267
+offset_right = -228.319
+offset_bottom = 160.267
+rotation = -0.717998
+text = "Volume"
+label_settings = SubResource("LabelSettings_07gdo")
+horizontal_alignment = 1
+
+[node name="LolHand" type="Sprite2D" parent="."]
+position = Vector2(-269, -499)
+rotation = 0.668152
+scale = Vector2(-1, 1)
+texture = ExtResource("12_07gdo")
+
+[node name="Elgatoo" type="Node2D" parent="."]
+position = Vector2(-351, -601)
+rotation = -2.21021
+scale = Vector2(1, -1)
+script = ExtResource("13_2tlly")
+
+[node name="1" type="Sprite2D" parent="Elgatoo"]
+position = Vector2(-583.168, 529.623)
+rotation = -2.21021
+scale = Vector2(1, -1)
+texture = ExtResource("14_7ovh6")
+hframes = 2
+
+[node name="D" type="Label" parent="Elgatoo/1"]
+offset_left = -8.00006
+offset_top = -18.0
+offset_right = 31.9999
+offset_bottom = 18.0
+text = "D"
+label_settings = SubResource("LabelSettings_2tlly")
+
+[node name="2" type="Sprite2D" parent="Elgatoo"]
+position = Vector2(-618.58, 483.678)
+rotation = -2.21021
+scale = Vector2(1, -1)
+texture = ExtResource("14_7ovh6")
+hframes = 2
+
+[node name="F" type="Label" parent="Elgatoo/2"]
+offset_left = -11.0
+offset_top = -19.0
+offset_right = 29.0
+offset_bottom = 17.0
+text = "F"
+label_settings = SubResource("LabelSettings_7ovh6")
+
+[node name="3" type="Sprite2D" parent="Elgatoo"]
+position = Vector2(-627.302, 562.443)
+rotation = -2.21021
+scale = Vector2(1, -1)
+texture = ExtResource("14_7ovh6")
+hframes = 2
+
+[node name="J" type="Label" parent="Elgatoo/3"]
+offset_left = -9.0
+offset_top = -19.0
+offset_right = 31.0
+offset_bottom = 17.0
+text = "J"
+label_settings = SubResource("LabelSettings_5ekf0")
+
+[node name="4" type="Sprite2D" parent="Elgatoo"]
+position = Vector2(-662.715, 516.498)
+rotation = -2.21021
+scale = Vector2(1, -1)
+texture = ExtResource("14_7ovh6")
+hframes = 2
+
+[node name="K" type="Label" parent="Elgatoo/4"]
+offset_left = -11.0
+offset_top = -18.0001
+offset_right = 29.0
+offset_bottom = 17.9999
+text = "K"
+label_settings = SubResource("LabelSettings_xlk6q")
 
 [node name="CreditsHand" type="Sprite2D" parent="."]
 unique_name_in_owner = true
