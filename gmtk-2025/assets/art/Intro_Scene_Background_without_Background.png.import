@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyu17c0dx2qix"
-path="res://.godot/imported/Button_Spritesheet.png-46604687286654a8767ce0dc09271612.ctex"
+uid="uid://cdkb3vck8fie1"
+path="res://.godot/imported/Intro_Scene_Background_without_Background.png-9c22c9645c0e974d1b87d057ee795b2b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/Button_Spritesheet.png"
-dest_files=["res://.godot/imported/Button_Spritesheet.png-46604687286654a8767ce0dc09271612.ctex"]
+source_file="res://assets/art/Intro_Scene_Background_without_Background.png"
+dest_files=["res://.godot/imported/Intro_Scene_Background_without_Background.png-9c22c9645c0e974d1b87d057ee795b2b.ctex"]
 
 [params]
 
