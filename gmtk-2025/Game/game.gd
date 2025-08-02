@@ -22,6 +22,15 @@ const NOTE = preload("res://Game/note.tscn")
 @onready var note_spawn_location_5: Node2D = %Note_Spawn_location_5
 @onready var note_spawn_locations = [note_spawn_location_5,note_spawn_location_4,note_spawn_location_3,note_spawn_location_2,note_spawn_location_1]
 
+@onready var sfx_player: AudioStreamPlayer = $SFXPlayer
+@onready var sfx_player_2: AudioStreamPlayer = $SFXPlayer2
+@onready var sfx_player_3: AudioStreamPlayer = $SFXPlayer3
+@onready var sfx_player_4: AudioStreamPlayer = $SFXPlayer4
+@onready var sfx_player_5: AudioStreamPlayer = $SFXPlayer5
+@onready var sfx_player_6: AudioStreamPlayer = $SFXPlayer6
+@onready var sfx_players = [sfx_player,sfx_player_2,sfx_player_3,sfx_player_4,sfx_player_5,sfx_player_6]
+
+
 
 @onready var area_2d: Area2D = $Area2d
 
@@ -47,6 +56,9 @@ const NOTE = preload("res://Game/note.tscn")
 @export var Presses_5: Array[PressRes]
 @onready var Streams = [Stream_1,Stream_2,Stream_3,Stream_4,Stream_5]
 @onready var Pressess = [Presses_1,Presses_2,Presses_3,Presses_4,Presses_5]
+
+@export var sfx_streams: Array[AudioStream]
+
 
 var difficulty = 1
 
@@ -215,6 +227,16 @@ func _spawn_next_nodes(beat:int):
 				new_note.global_position = note_spawn_locations[i].global_position
 				kill_tween(new_tween)
 				
+				new_note.missed.connect(play_sfx)
+
+func play_sfx():
+	for x in sfx_players:
+		if not x.playing:
+			x.stream = sfx_streams[randi_range(0,sfx_streams.size()-1)]
+			x.play()
+			return
+	sfx_players[0].stream = sfx_streams[randi_range(0,sfx_streams.size()-1)]
+	sfx_players[0].play()
 
 
 func kill_tween(tween:Tween):
