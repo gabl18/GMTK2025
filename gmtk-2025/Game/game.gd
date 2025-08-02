@@ -147,10 +147,12 @@ func _check_press(track:int):
 
 			if closest_note:
 				score += int((300-(closest_distance*multiplier))/10)
-				
+				print(int((closest_distance*multiplier)/10))
 				closest_note.queue_free()
-				red_line.spawn_particle(track,[perfect_distance,nice_distance].map(func(x): return closest_distance > x).count(true))
-
+				red_line.spawn_particle(track - 1,[perfect_distance,nice_distance].map(func(x): return int((closest_distance*multiplier)/10) > x).count(true))
+				return
+	
+	score -= 30
 
 
 

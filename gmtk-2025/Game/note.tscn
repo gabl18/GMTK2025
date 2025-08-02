@@ -1,7 +1,92 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4p21v2clemuy"]
+[gd_scene load_steps=7 format=3 uid="uid://b4p21v2clemuy"]
 
 [ext_resource type="Texture2D" uid="uid://bc1p0xu2h6hlj" path="res://assets/art/note.png" id="1_2o5vk"]
 [ext_resource type="Script" uid="uid://blof7kdigb1jm" path="res://Game/note.gd" id="2_a386v"]
+
+[sub_resource type="Animation" id="Animation_a386v"]
+resource_name = "DIE#"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.19209e-07, 0.0500001, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 0.25, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, -1), Vector2(-1, -1), Vector2(2.437, 0.965), Vector2(0, 0), Vector2(0.1, -0.4), Vector2(-0.184, 0.737), Vector2(0.422, 2), Vector2(-0.5, -1.5), Vector2(1.255, 2.374), Vector2(-2.668, 2), Vector2(0, 0), Vector2(0.1, -0.4), Vector2(-0.184, 0.737), Vector2(0.422, 2), Vector2(-0.5, -1.5), Vector2(1.255, 2.374), Vector2(-2.668, 2), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 0.94902), Color(1, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 0.9), Vector2(0.4, 0.4)]
+}
+
+[sub_resource type="Animation" id="Animation_twlco"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_twlco"]
+_data = {
+&"DIE#": SubResource("Animation_a386v"),
+&"RESET": SubResource("Animation_twlco")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a386v"]
 radius = 3.0
@@ -16,5 +101,11 @@ script = ExtResource("2_a386v")
 texture = ExtResource("1_2o5vk")
 hframes = 4
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Note"]
+libraries = {
+&"": SubResource("AnimationLibrary_twlco")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_a386v")

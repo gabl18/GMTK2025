@@ -17,10 +17,11 @@ func _ready() -> void:
 	$Intro.queue_free()
 	
 	%Splashscreen.hide()
+	$Center/VinylPlayer.hide()
 	
 	var game = GAME.instantiate()
 	add_child(game)
-	$Center/VinylPlayer.hide()
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
