@@ -60,6 +60,8 @@ var active_beat = 0
 var time_since_last_beat = 0
 var time_till_next_beat = 0
 
+var paused := false
+
 
 signal _next_loop
 
@@ -107,8 +109,19 @@ func _input(event: InputEvent) -> void:
 			_check_press(2)
 		if event.is_action_pressed("4"):
 			_check_press(3)
-		if event.is_action_pressed("5"):
-			_check_press(4)
+	
+		if event.is_action_pressed('pause'):
+			if paused:
+				vinyl_player.unpause_game()
+				base.stream_paused = false
+				for track in tracks:
+					track.stream_paused = false
+			else:
+				vinyl_player.pause_game()
+				base.stream_paused = true
+				for track in tracks:
+					track.stream_paused = true
+			paused = not paused
 
 
 func _check_press(track:int):
