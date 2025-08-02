@@ -110,28 +110,29 @@ func _input(event: InputEvent) -> void:
 			_check_press(4)
 	
 		if event.is_action_pressed('pause'):
-			if paused:
-				vinyl_player.unpause_game()
-				base.stream_paused = false
-				for track in tracks:
-					track.stream_paused = false
+			if not %CreditsHand.credits:
+				if paused:
+					vinyl_player.unpause_game()
+					base.stream_paused = false
+					for track in tracks:
+						track.stream_paused = false
+						
+					for tween in get_tree().get_processed_tweens():
+						tween.play()
+						if not tween.is_running():
+							tween.kill()
+				else:
+					vinyl_player.pause_game()
+					base.stream_paused = true
+					for track in tracks:
+						track.stream_paused = true
 					
-				for tween in get_tree().get_processed_tweens():
-					tween.play()
-					if not tween.is_running():
-						tween.kill()
-			else:
-				vinyl_player.pause_game()
-				base.stream_paused = true
-				for track in tracks:
-					track.stream_paused = true
-				
-				for tween in get_tree().get_processed_tweens():
-					if not tween.is_running():
-						tween.kill()
-					else: tween.pause()
+					for tween in get_tree().get_processed_tweens():
+						if not tween.is_running():
+							tween.kill()
+						else: tween.pause()
 					
-			paused = not paused
+				paused = not paused
 
 
 func _check_press(track:int):
@@ -154,7 +155,6 @@ func _check_press(track:int):
 
 			if closest_note:
 				score += int((300-(closest_distance*multiplier))/10)
-				print(int((closest_distance*multiplier)/10))
 				closest_note.queue_free()
 				red_line.spawn_particle(track - 1,[perfect_distance,nice_distance].map(func(x): return int((closest_distance*multiplier)/10) > x).count(true))
 				return
@@ -200,9 +200,7 @@ func _play_loop(active_tracks):
 
 func _spawn_next_nodes(beat:int):
 	for i in range(len(next_presses)):
-		print(beat)
 		if next_presses[i]:
-			print(next_presses[i].Presses)
 			if next_presses[i].Presses[beat % beat_count] == true:
 				var new_tween = get_tree().create_tween()
 				var new_note = NOTE.instantiate()
