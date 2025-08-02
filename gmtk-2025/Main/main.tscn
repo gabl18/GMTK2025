@@ -1,15 +1,30 @@
-[gd_scene load_steps=15 format=3 uid="uid://hcw7nfruroab"]
+[gd_scene load_steps=14 format=3 uid="uid://hcw7nfruroab"]
 
 [ext_resource type="Texture2D" uid="uid://ihc5vq0gx7jh" path="res://assets/art/Background.png" id="1_2w1kt"]
 [ext_resource type="Script" uid="uid://becxofm53w5m" path="res://Main/main.gd" id="1_eunhr"]
-[ext_resource type="Texture2D" uid="uid://c1n0jcqqkxwlr" path="res://assets/art/Vinyl_Player_Spritesheet.png" id="3_eunhr"]
 [ext_resource type="FontFile" uid="uid://53sgq0o8p6te" path="res://assets/fonts/SharpMessLite.ttf" id="3_k3v36"]
 [ext_resource type="Texture2D" uid="uid://dcq8eerxektvy" path="res://assets/art/Splash_Screen.png" id="3_qvhan"]
 [ext_resource type="PackedScene" uid="uid://bbc0dys6evopg" path="res://Game/intro.tscn" id="4_k3v36"]
+[ext_resource type="Texture2D" uid="uid://cdkb3vck8fie1" path="res://assets/art/Intro_Scene_Background_without_Background.png" id="4_liyct"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_liyct"]
 font = ExtResource("3_k3v36")
 font_size = 38
+
+[sub_resource type="Animation" id="Animation_liyct"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ib3t1"]
 resource_name = "blink"
@@ -27,45 +42,10 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.458824), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_liyct"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f6fdm"]
 _data = {
 &"RESET": SubResource("Animation_liyct"),
 &"blink": SubResource("Animation_ib3t1")
-}
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_k3v36"]
-atlas = ExtResource("3_eunhr")
-region = Rect2(0, 0, 960, 616)
-
-[sub_resource type="Animation" id="Animation_eunhr"]
-resource_name = "hover"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Splashscreen:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
-"transitions": PackedFloat32Array(1, 2.37842, 1.10957),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.03, 1.03), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_k3v36"]
@@ -81,6 +61,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eunhr"]
+resource_name = "hover"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Splashscreen:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 2.37842, 1.10957),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.03, 1.03), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_liyct"]
@@ -138,7 +134,7 @@ grow_vertical = 2
 
 [node name="VinylPlayer" type="Sprite2D" parent="Center"]
 z_index = -1
-texture = SubResource("AtlasTexture_k3v36")
+texture = ExtResource("4_liyct")
 
 [node name="Splashscreen" type="Sprite2D" parent="Center"]
 unique_name_in_owner = true
