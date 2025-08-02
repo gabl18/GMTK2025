@@ -52,5 +52,5 @@ bus/8/name = &"TÖTTÖT"
 bus/8/solo = false
 bus/8/mute = false
 bus/8/bypass_fx = false
-bus/8/volume_db = 0.0
+bus/8/volume_db = -6.25101
 bus/8/send = &"Master"
