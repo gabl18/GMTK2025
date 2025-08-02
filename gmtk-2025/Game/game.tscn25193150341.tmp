@@ -309,6 +309,8 @@ Stream_3 = Array[AudioStream]([ExtResource("15_qyr8x")])
 Presses_3 = Array[ExtResource("15_2cxdh")]([SubResource("Resource_2cxdh"), SubResource("Resource_rlpku")])
 Stream_4 = Array[AudioStream]([SubResource("AudioStreamWAV_2tlly")])
 Presses_4 = Array[ExtResource("15_2cxdh")]([SubResource("Resource_2cxdh")])
+Stream_5 = null
+Presses_5 = null
 
 [node name="Line2D" type="Line2D" parent="GameControler"]
 visible = false

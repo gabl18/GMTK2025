@@ -16,8 +16,13 @@ func kill_in(time:int):
 	set_collision_layer_value(1,true)
 	set_collision_mask_value(1,true)
 	
-	timer.start(time)
+	timer.start(time + randf_range(0,0.2))
 	await timer.timeout
+	
+	$Note/AnimationPlayer.play("DIE#")
+	
+	await $Note/AnimationPlayer.animation_finished
+	
 	queue_free()
 
 func pause():

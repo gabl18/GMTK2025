@@ -54,3 +54,8 @@ func _process(_delta):
 		tween.tween_property(topLeftRect, "size", Vector2(topLeftRect.size.x, height), 0.05)
  
 		tween.tween_property(bottomLeftRect, "size", Vector2(bottomLeftRect.size.x, height), 0.05)
+		kill_tween(tween)
+		
+func kill_tween(tween:Tween):
+	await tween.finished
+	tween.kill()
