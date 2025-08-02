@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://cmuytj83v71ok"]
+[gd_scene load_steps=64 format=4 uid="uid://cmuytj83v71ok"]
 
 [ext_resource type="Script" uid="uid://curnggefttx6x" path="res://Game/_game.gd" id="1_7gi1t"]
 [ext_resource type="Script" uid="uid://rarfh871whjk" path="res://Game/game.gd" id="1_7raqb"]
@@ -24,7 +24,9 @@
 [ext_resource type="Texture2D" uid="uid://dyu17c0dx2qix" path="res://assets/art/Button_Spritesheet.png" id="14_7ovh6"]
 [ext_resource type="AudioStream" uid="uid://cokj1y8mu8xpt" path="res://assets/music/Meli/2_1.wav" id="14_rxmp4"]
 [ext_resource type="Script" uid="uid://cq30tl1o26ce8" path="res://Game/Press_Res.gd" id="15_2cxdh"]
+[ext_resource type="Texture2D" uid="uid://djy1ddrj5sny6" path="res://assets/art/Slider_Handle.png" id="15_7ovh6"]
 [ext_resource type="AudioStream" uid="uid://csefda2o2xvkx" path="res://assets/music/Meli/3_1.wav" id="15_qyr8x"]
+[ext_resource type="Script" uid="uid://c1qjdytwr0kt3" path="res://Game/v_slider.gd" id="16_dc3to"]
 [ext_resource type="AudioStream" uid="uid://3owu688kmsxn" path="res://assets/music/Meli/4_1.wav" id="16_ss60k"]
 [ext_resource type="AudioStream" uid="uid://cp2ix80g0wkxe" path="res://assets/music/Meli/3_2.wav" id="17_4w5h0"]
 
@@ -139,6 +141,8 @@ font_size = 37
 font_color = Color(0.926679, 0.278202, 0.30634, 1)
 outline_size = 10
 outline_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7ovh6"]
 
 [sub_resource type="Animation" id="Animation_vtcgr"]
 resource_name = "slide_in"
@@ -852,6 +856,7 @@ horizontal_alignment = 1
 script = ExtResource("10_rpdke")
 
 [node name="VolumeHand" type="Sprite2D" parent="."]
+z_index = 4
 position = Vector2(1087, 192)
 rotation = -0.434587
 texture = ExtResource("11_17dmm")
@@ -937,6 +942,20 @@ offset_right = 29.0
 offset_bottom = 17.9999
 text = "K"
 label_settings = SubResource("LabelSettings_xlk6q")
+
+[node name="VSlider" type="VSlider" parent="."]
+offset_left = 335.0
+offset_top = -93.0
+offset_right = 416.0
+offset_bottom = 147.0
+rotation = -0.0137481
+theme_override_icons/grabber = ExtResource("15_7ovh6")
+theme_override_icons/grabber_highlight = ExtResource("15_7ovh6")
+theme_override_styles/slider = SubResource("StyleBoxEmpty_7ovh6")
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = ExtResource("16_dc3to")
 
 [node name="CreditsHand" type="Sprite2D" parent="."]
 unique_name_in_owner = true
