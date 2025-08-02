@@ -4,7 +4,7 @@ const NOTE = preload("res://Game/note.tscn")
 
 @onready var rhythm_notifier: RhythmNotifier = $RhythmNotifier
 @onready var vinyl_player: Sprite2D = %VinylPlayer
-@onready var red_line: Sprite2D = %RedLine
+@onready var red_line: Node2D = %RedLine
 
 @onready var base: AudioStreamPlayer = $Base
 

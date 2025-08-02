@@ -13,7 +13,7 @@ extends Control
 @onready var track_5: Sprite2D = $VinylPlayer/Disc/Track5
 
 @onready var game_controler: Node2D = $GameControler
-@onready var red_line: Sprite2D = $VinylPlayer/RedLine
+@onready var red_line: Node2D = $VinylPlayer/RedLine
 
 func _ready() -> void:
 	track_1.modulate = track_color_1
