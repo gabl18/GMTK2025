@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://cmuytj83v71ok"]
+[gd_scene load_steps=72 format=4 uid="uid://cmuytj83v71ok"]
 
 [ext_resource type="Script" uid="uid://curnggefttx6x" path="res://Game/_game.gd" id="1_7gi1t"]
 [ext_resource type="Script" uid="uid://rarfh871whjk" path="res://Game/game.gd" id="1_7raqb"]
@@ -22,13 +22,21 @@
 [ext_resource type="AudioStream" uid="uid://brkgdnjgtxlw4" path="res://assets/music/Meli/1_2.wav" id="13_ss60k"]
 [ext_resource type="AudioStream" uid="uid://fv25hm3c68jl" path="res://assets/music/Meli/1_3.wav" id="14_2cxdh"]
 [ext_resource type="Texture2D" uid="uid://dyu17c0dx2qix" path="res://assets/art/Button_Spritesheet.png" id="14_7ovh6"]
+[ext_resource type="AudioStream" uid="uid://cot670fs4vw84" path="res://assets/sfx/press1.wav" id="14_q766a"]
 [ext_resource type="AudioStream" uid="uid://cokj1y8mu8xpt" path="res://assets/music/Meli/2_1.wav" id="14_rxmp4"]
 [ext_resource type="Script" uid="uid://cq30tl1o26ce8" path="res://Game/Press_Res.gd" id="15_2cxdh"]
-[ext_resource type="Texture2D" uid="uid://djy1ddrj5sny6" path="res://assets/art/Slider_Handle.png" id="15_7ovh6"]
+[ext_resource type="Texture2D" uid="uid://dg7b7lrknncc2" path="res://assets/art/Slider_Handle.png" id="15_7ovh6"]
+[ext_resource type="AudioStream" uid="uid://dyikvvc7hgrmw" path="res://assets/sfx/press2.wav" id="15_i6m6s"]
 [ext_resource type="AudioStream" uid="uid://csefda2o2xvkx" path="res://assets/music/Meli/3_1.wav" id="15_qyr8x"]
+[ext_resource type="AudioStream" uid="uid://duqlta7m23avn" path="res://assets/sfx/press3.wav" id="16_c33pw"]
 [ext_resource type="Script" uid="uid://c1qjdytwr0kt3" path="res://Game/v_slider.gd" id="16_dc3to"]
 [ext_resource type="AudioStream" uid="uid://3owu688kmsxn" path="res://assets/music/Meli/4_1.wav" id="16_ss60k"]
 [ext_resource type="AudioStream" uid="uid://cp2ix80g0wkxe" path="res://assets/music/Meli/3_2.wav" id="17_4w5h0"]
+[ext_resource type="AudioStream" uid="uid://lt4c5flyfi7i" path="res://assets/sfx/press4.wav" id="17_obt4c"]
+[ext_resource type="AudioStream" uid="uid://tpaqry7b3wlh" path="res://assets/sfx/press5.wav" id="18_538cw"]
+[ext_resource type="AudioStream" uid="uid://bgl56k8jm3r6f" path="res://assets/sfx/hitHurt.wav" id="32_i6m6s"]
+[ext_resource type="AudioStream" uid="uid://bbpu13bjmjo8d" path="res://assets/sfx/hitHurt2.wav" id="33_obt4c"]
+[ext_resource type="AudioStream" uid="uid://1h4542t5ufy1" path="res://assets/sfx/hitHurt1.wav" id="34_538cw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2cxdh"]
 font = ExtResource("8_2cxdh")
@@ -882,6 +890,7 @@ position = Vector2(-351, -601)
 rotation = -2.21021
 scale = Vector2(1, -1)
 script = ExtResource("13_2tlly")
+streams = Array[AudioStream]([ExtResource("14_q766a"), ExtResource("15_i6m6s"), ExtResource("16_c33pw"), ExtResource("17_obt4c"), ExtResource("18_538cw")])
 
 [node name="1" type="Sprite2D" parent="Elgatoo"]
 position = Vector2(-583.168, 529.623)
@@ -942,6 +951,18 @@ offset_right = 29.0
 offset_bottom = 17.9999
 text = "K"
 label_settings = SubResource("LabelSettings_xlk6q")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Elgatoo"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Elgatoo"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Elgatoo"]
+bus = &"SFX"
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="Elgatoo"]
+bus = &"SFX"
 
 [node name="VSlider" type="VSlider" parent="."]
 offset_left = 335.0
@@ -1072,6 +1093,7 @@ Stream_3 = Array[AudioStream]([ExtResource("15_qyr8x"), ExtResource("17_4w5h0")]
 Presses_3 = Array[ExtResource("15_2cxdh")]([SubResource("Resource_2tlly"), SubResource("Resource_rlpku")])
 Stream_4 = Array[AudioStream]([SubResource("AudioStreamWAV_2cxdh")])
 Presses_4 = Array[ExtResource("15_2cxdh")]([SubResource("Resource_7ovh6")])
+sfx_streams = Array[AudioStream]([ExtResource("32_i6m6s"), ExtResource("33_obt4c"), ExtResource("34_538cw")])
 
 [node name="Line2D" type="Line2D" parent="GameControler"]
 visible = false
@@ -1087,7 +1109,7 @@ polygon = PackedVector2Array(-227, 98, -210.614, 133.461, 0, 0)
 
 [node name="Base" type="AudioStreamPlayer" parent="GameControler"]
 stream = ExtResource("12_33n3b")
-volume_db = -8.591
+volume_db = -79.13
 bus = &"Music"
 
 [node name="1" type="AudioStreamPlayer" parent="GameControler"]
@@ -1119,6 +1141,24 @@ bpm = 220.0
 beat_length = 0.272727
 audio_stream_player = NodePath("../Base")
 metadata/_custom_type_script = "uid://n2up8pxmptqx"
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="GameControler"]
+bus = &"TÖTTÖT"
+
+[node name="SFXPlayer2" type="AudioStreamPlayer" parent="GameControler"]
+bus = &"TÖTTÖT"
+
+[node name="SFXPlayer3" type="AudioStreamPlayer" parent="GameControler"]
+bus = &"TÖTTÖT"
+
+[node name="SFXPlayer4" type="AudioStreamPlayer" parent="GameControler"]
+bus = &"TÖTTÖT"
+
+[node name="SFXPlayer5" type="AudioStreamPlayer" parent="GameControler"]
+bus = &"TÖTTÖT"
+
+[node name="SFXPlayer6" type="AudioStreamPlayer" parent="GameControler"]
+bus = &"TÖTTÖT"
 
 [node name="Note_Spawns" type="Node2D" parent="."]
 rotation = 1.06068

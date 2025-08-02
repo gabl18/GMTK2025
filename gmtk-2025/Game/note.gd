@@ -3,6 +3,8 @@ class_name Note
 
 var timer: Timer
 
+signal missed
+
 func set_track(track:int):
 	$Note.frame = track
 	add_to_group(str(track+1))
@@ -22,7 +24,8 @@ func kill_in(time:int):
 	$Note/AnimationPlayer.play("DIE#")
 	
 	await $Note/AnimationPlayer.animation_finished
-	
+
+	missed.emit()
 	queue_free()
 
 func pause():

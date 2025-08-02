@@ -8,6 +8,6 @@ func _ready() -> void:
 	value_changed.connect(_on_music_slider_value_changed)
 
 
-func _on_music_slider_value_changed(value: float) -> void:
-	var db = linear_to_db(value)
+func _on_music_slider_value_changed(value_: float) -> void:
+	var db = linear_to_db(value_)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), db)
