@@ -5,7 +5,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k8cul"]
 atlas = ExtResource("2_aeqor")
-region = Rect2(15180, 0, 1012, 570)
+region = Rect2(0, 0, 1012, 570)
 
 [node name="Intro" type="Control"]
 layout_mode = 3

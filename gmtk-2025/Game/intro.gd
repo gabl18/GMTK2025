@@ -5,11 +5,16 @@ extends Control
 
 signal finished
 
+var frames
+var current_frame
+
 func _ready() -> void:
-	var frames = texture.atlas.get_size().x/texture.region.size.x-1
-	print(frames)
-	var current_frame = 0
+	frames = texture.atlas.get_size().x/texture.region.size.x-1
+	current_frame = 0
 	texture.region.position.x = 0
+
+func play_anim() -> void:
+
 	timer.start()
 	
 	while current_frame < frames:

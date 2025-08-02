@@ -10,16 +10,16 @@ extends Sprite2D
 @onready var track_3: Sprite2D = $Disc/Track3
 @onready var track_4: Sprite2D = $Disc/Track4
 @onready var track_5: Sprite2D = $Disc/Track5
-@onready var tracks = [track_1,track_2,track_3,track_4,track_5]
+@onready var tracks = [track_5,track_4,track_3,track_2,track_1,]
 
 
 var needle_off_rotation := -20.4
 var needle_track_rotations := [
-	10.7,
-	3,
-	-2.8,
+	-10.2,
 	-7,
-	-10.2
+	-2.8,
+	3,
+	10.7,
 ]
 
 var _active_tracks: Array

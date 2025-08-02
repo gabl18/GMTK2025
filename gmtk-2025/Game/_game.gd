@@ -21,6 +21,7 @@ func _ready() -> void:
 	track_3.modulate = track_color_3
 	track_4.modulate = track_color_4
 	track_5.modulate = track_color_5
-	
-	game_controler.note_colors = [track_color_1,track_color_2,track_color_3,track_color_4,track_color_5]
-	red_line.note_colors = [track_color_1,track_color_2,track_color_3,track_color_4,track_color_5]
+	var arr = [track_color_1,track_color_2,track_color_3,track_color_4,track_color_5]
+	arr.reverse()
+	game_controler.note_colors = arr
+	red_line.note_colors = arr

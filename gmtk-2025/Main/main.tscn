@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://hcw7nfruroab"]
+[gd_scene load_steps=15 format=3 uid="uid://hcw7nfruroab"]
 
 [ext_resource type="Texture2D" uid="uid://ihc5vq0gx7jh" path="res://assets/art/Background.png" id="1_2w1kt"]
 [ext_resource type="Script" uid="uid://becxofm53w5m" path="res://Main/main.gd" id="1_eunhr"]
 [ext_resource type="Texture2D" uid="uid://c1n0jcqqkxwlr" path="res://assets/art/Vinyl_Player_Spritesheet.png" id="3_eunhr"]
 [ext_resource type="FontFile" uid="uid://53sgq0o8p6te" path="res://assets/fonts/SharpMessLite.ttf" id="3_k3v36"]
 [ext_resource type="Texture2D" uid="uid://dcq8eerxektvy" path="res://assets/art/Splash_Screen.png" id="3_qvhan"]
+[ext_resource type="PackedScene" uid="uid://bbc0dys6evopg" path="res://Game/intro.tscn" id="4_k3v36"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_liyct"]
 font = ExtResource("3_k3v36")
@@ -110,10 +111,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -82.0
-offset_top = -30.0
-offset_right = 58.0
-offset_bottom = -7.0
+offset_left = -178.0
+offset_top = -81.0
+offset_right = 153.0
+offset_bottom = -44.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Press Any key to start"
@@ -150,3 +151,5 @@ libraries = {
 &"": SubResource("AnimationLibrary_liyct")
 }
 autoplay = "hover"
+
+[node name="Intro" parent="." instance=ExtResource("4_k3v36")]

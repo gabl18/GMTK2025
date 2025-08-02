@@ -8,11 +8,11 @@ var note_colors
 @onready var particle_gens: Array[CPUParticles2D] = [cpu_particles_2d]
 
 var generator_position := [
-	Vector2(-83,57),
-	Vector2(-115,63),
-	Vector2(-151,85),
+	Vector2(-192,107),
 	Vector2(-173,96),
-	Vector2(-192,107)
+	Vector2(-151,85),
+	Vector2(-115,63),
+	Vector2(-83,57),
 ]
 
 func spawn_particle(track_idx:int, texture_idx:int):
