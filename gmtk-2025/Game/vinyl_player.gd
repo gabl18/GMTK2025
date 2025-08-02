@@ -24,6 +24,7 @@ var needle_track_rotations := [
 
 var _active_tracks: Array
 var needle_goal: int
+var pre_pause_rotation: int
 
 
 func change_turn_speed(rps:float):
@@ -37,7 +38,6 @@ func reset_needle():
 
 func change_active_tracks(active_tracks:Array):
 	_active_tracks = active_tracks
-	print(active_tracks)
 	var active_track_idxs: Array
 
 	for i in range(len(_active_tracks)):
@@ -55,8 +55,26 @@ func change_active_tracks(active_tracks:Array):
 	var tween = get_tree().create_tween()
 	tween.tween_property(needle,"rotation_degrees",needle_track_rotations[needle_goal],0.5)
 	
+
+func pause_game():
+	$Label.show()
+	$AudioVisualizer.hide()
+	pre_pause_rotation = needle.rotation_degrees
+	reset_needle()
+	spinner.pause()
+	for child in disc.get_children():
+		if child is Note:
+			child.pause()
 	
-	
-	
+
+func unpause_game():
+	$Label.hide()
+	$AudioVisualizer.show()
+	var tween = get_tree().create_tween()
+	tween.tween_property(needle,"rotation_degrees",pre_pause_rotation,0.5)
+	spinner.play()
+	for child in disc.get_children():
+		if child is Note:
+			child.unpause()
 	
 	
