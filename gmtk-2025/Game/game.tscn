@@ -670,7 +670,7 @@ stereo = true
 
 [sub_resource type="Resource" id="Resource_7ovh6"]
 script = ExtResource("15_2cxdh")
-Presses = Array[bool]([true, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false])
+Presses = Array[bool]([false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, true, false, false, false, false, false, false, true])
 metadata/_custom_type_script = "uid://cq30tl1o26ce8"
 
 [node name="Game" type="Control"]
@@ -783,11 +783,9 @@ offset = Vector2(-800, -100)
 region_enabled = true
 region_rect = Rect2(6720, 0, 960, 616)
 
-[node name="RedLine" type="Sprite2D" parent="VinylPlayer"]
+[node name="RedLine" type="Node2D" parent="VinylPlayer"]
 unique_name_in_owner = true
-texture = ExtResource("1_kul4i")
-region_enabled = true
-region_rect = Rect2(8640, 0, 960, 616)
+rotation = 0.0953841
 script = ExtResource("5_72g0p")
 textures = Array[Texture2D]([SubResource("AtlasTexture_qlwvw"), SubResource("AtlasTexture_rpdke"), SubResource("AtlasTexture_33n3b")])
 
@@ -814,13 +812,18 @@ tangential_accel_min = -47.71
 tangential_accel_max = 47.71
 angle_min = 19.8
 angle_max = 66.1
-scale_amount_min = 0.25
-scale_amount_max = 0.25
+scale_amount_min = 0.2
+scale_amount_max = 0.2
 color = Color(1, 0.321569, 1, 1)
 color_ramp = SubResource("Gradient_qlwvw")
 hue_variation_min = -0.1
 hue_variation_max = 0.1
 hue_variation_curve = SubResource("Curve_rpdke")
+
+[node name="RedLine2" type="Sprite2D" parent="VinylPlayer"]
+texture = ExtResource("1_kul4i")
+region_enabled = true
+region_rect = Rect2(8640, 0, 960, 616)
 
 [node name="NotePaper" type="Label" parent="."]
 unique_name_in_owner = true
@@ -1099,7 +1102,7 @@ audio_stream_player = NodePath("../Base")
 metadata/_custom_type_script = "uid://n2up8pxmptqx"
 
 [node name="Note_Spawns" type="Node2D" parent="."]
-rotation = 1.06077
+rotation = 1.06068
 
 [node name="Note_Spawn_location_1" type="Node2D" parent="Note_Spawns"]
 unique_name_in_owner = true
