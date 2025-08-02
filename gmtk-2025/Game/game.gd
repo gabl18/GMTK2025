@@ -70,7 +70,6 @@ signal _next_loop
 var playing_tracks := []
 
 func _ready() -> void:
-	
 	difficulty = 1
 	rhythm_notifier.beat.connect(_try_next_loop)
 	rhythm_notifier.beat.connect(_spawn_next_nodes)
@@ -79,8 +78,13 @@ func _ready() -> void:
 	
 	seed(int(get_global_mouse_position().x*get_global_mouse_position().y+Time.get_unix_time_from_system()))
 	vinyl_player.reset_needle()
-	_play_first_loop()
+	
+	await get_tree().process_frame
 	_generate_random_loop()
+	
+	_play_first_loop()
+	_spawn_next_nodes(0)
+	
 	await _next_loop
 	
 	while true:
@@ -164,13 +168,13 @@ func _generate_random_loop():
 	playing_tracks = []
 	active_presses = []
 	for x in next_presses:
-		active_presses.append(x.duplicate_deep())
-	#while playing_tracks.size() > floori(difficulty) or playing_tracks.is_empty() or prev_tracks == playing_tracks.map(func(x): return x.to_string()):
-	while playing_tracks.is_empty():
+		if x is not bool:
+			active_presses.append(x.duplicate_deep())
+	while playing_tracks.size() > floori(difficulty) or playing_tracks.is_empty() or prev_tracks == playing_tracks.map(func(x): return x.to_string()):
 		next_presses = Array()
 		playing_tracks = []
 		for i in range(len(tracks)):
-			if randi() % 2 or true:
+			if randi() % 2:
 				var track_idx = randi_range(0,Streams[i].size()-1)
 				next_presses.append(Pressess[i][track_idx])
 				playing_tracks.append(tracks[i])
@@ -183,7 +187,8 @@ func _generate_random_loop():
 
 func _play_first_loop():
 	base.play()
-
+	for track in tracks:
+		track.play()
 
 func _play_loop(active_tracks):
 	base.play()
@@ -195,7 +200,9 @@ func _play_loop(active_tracks):
 
 func _spawn_next_nodes(beat:int):
 	for i in range(len(next_presses)):
+		print(beat)
 		if next_presses[i]:
+			print(next_presses[i].Presses)
 			if next_presses[i].Presses[beat % beat_count] == true:
 				var new_tween = get_tree().create_tween()
 				var new_note = NOTE.instantiate()
@@ -204,7 +211,7 @@ func _spawn_next_nodes(beat:int):
 				new_note.modulate = note_colors[i]
 				new_note.modulate.a = 0
 				new_tween.tween_property(new_note,"modulate:a",1,4).set_delay(2)
-				new_note.kill_in(rhythm_notifier.beat_length*2 *song_beat_count)
+				new_note.kill_in(rhythm_notifier.beat_length * 2 * song_beat_count)
 				new_note.set_track(i)
 				new_note.global_rotation = 0
 				new_note.global_position = note_spawn_locations[i].global_position
