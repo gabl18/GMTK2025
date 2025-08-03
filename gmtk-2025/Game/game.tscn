@@ -1027,10 +1027,8 @@ offset_right = -30.0251
 offset_bottom = 208.887
 rotation = -0.0454518
 scale = Vector2(-1, 1)
-text = "Programmer:
-Michael
-Artist:
-Gabl"
+text = "Music:
+Meli"
 label_settings = SubResource("LabelSettings_dc3to")
 horizontal_alignment = 1
 
@@ -1041,10 +1039,8 @@ offset_right = -30.0251
 offset_bottom = 208.887
 rotation = -0.0454518
 scale = Vector2(-1, 1)
-text = "Programmer:
-Michael
-Artist:
-Gabl"
+text = "Testers:
+Dalek, Lars"
 label_settings = SubResource("LabelSettings_dc3to")
 horizontal_alignment = 1
 
@@ -1055,10 +1051,9 @@ offset_right = -30.0251
 offset_bottom = 208.887
 rotation = -0.0454518
 scale = Vector2(-1, 1)
-text = "Programmer:
-Michael
-Artist:
-Gabl"
+text = "Yes, all
+assets were
+made by us!"
 label_settings = SubResource("LabelSettings_dc3to")
 horizontal_alignment = 1
 
@@ -1069,10 +1064,9 @@ offset_right = -30.0251
 offset_bottom = 208.887
 rotation = -0.0454518
 scale = Vector2(-1, 1)
-text = "Programmer:
-Michael
-Artist:
-Gabl"
+text = "THANKS
+FOR
+PLAYING!"
 label_settings = SubResource("LabelSettings_dc3to")
 horizontal_alignment = 1
 

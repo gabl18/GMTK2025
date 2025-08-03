@@ -24,6 +24,10 @@ func _input(event: InputEvent) -> void:
 				$AnimationPlayer.play("slide_in")
 				await $AnimationPlayer.animation_finished
 				$AnimationPlayer.play("Credits")
+				await $AnimationPlayer.animation_finished
+				$AnimationPlayer.play("Credits")
+				await $AnimationPlayer.animation_finished
+				$AnimationPlayer.play("Credits")
 
 
 func _on_control_gui_input(event: InputEvent) -> void:
