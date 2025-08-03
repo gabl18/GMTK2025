@@ -22,12 +22,6 @@ func _input(event: InputEvent) -> void:
 				credits = false
 				await get_tree().create_timer(1).timeout
 				$AnimationPlayer.play("slide_in")
-				await $AnimationPlayer.animation_finished
-				$AnimationPlayer.play("Credits")
-				await $AnimationPlayer.animation_finished
-				$AnimationPlayer.play("Credits")
-				await $AnimationPlayer.animation_finished
-				$AnimationPlayer.play("Credits")
 
 
 func _on_control_gui_input(event: InputEvent) -> void:

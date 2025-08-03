@@ -230,6 +230,7 @@ func _spawn_next_nodes(beat:int):
 				new_note.missed.connect(play_sfx)
 
 func play_sfx():
+	score -= 10
 	for x in sfx_players:
 		if not x.playing:
 			x.stream = sfx_streams[randi_range(0,sfx_streams.size()-1)]
